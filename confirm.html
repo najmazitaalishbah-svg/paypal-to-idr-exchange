@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Konfirmasi Transfer PayPal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .warning {
+      background: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Konfirmasi Transfer</h1>
+  <p class="subtitle">Kirim detail transaksi ke admin</p>
+
+  <div class="warning">
+    ⚠️ Pastikan Anda <strong>sudah melakukan transfer PayPal</strong> sebelum mengirim konfirmasi.
+  </div>
+
+  <label>Nama Lengkap</label>
+  <input type="text" id="name" placeholder="Nama Anda">
+
+  <label>Email PayPal Pengirim</label>
+  <input type="email" id="paypalEmail" placeholder="email@paypal.com">
+
+  <label>Nominal Dikirim (USD)</label>
+  <input type="number" id="amount" placeholder="Contoh: 50">
+
+  <label>Bank Tujuan (IDR)</label>
+  <input type="text" id="bank" placeholder="BCA / BRI / Mandiri">
+
+  <label>Catatan (opsional)</label>
+  <textarea id="note" rows="3" placeholder="Catatan tambahan"></textarea>
+
+  <button onclick="sendWhatsApp()">📤 Kirim Konfirmasi via WhatsApp</button>
+
+  <div class="note">
+    Bukti transfer (screenshot) dikirim langsung melalui WhatsApp.
+  </div>
+
+</div>
+
+<script>
+function sendWhatsApp() {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('paypalEmail').value;
+  const amount = document.getElementById('amount').value;
+  const bank = document.getElementById('bank').value;
+  const note = document.getElementById('note').value;
+
+  if (!name || !email || !amount || !bank) {
+    alert('Harap lengkapi semua data wajib.');
+    return;
+  }
+
+  const message = `
+Halo Admin,
+Saya ingin konfirmasi transfer PayPal.
+
+Nama: ${name}
+Email PayPal: ${email}
+Nominal: $${amount}
+Bank Tujuan: ${bank}
+
+Catatan:
+${note}
+
+Bukti transfer akan saya kirim setelah ini.
+  `;
+
+  const phone = '628XXXXXXXXX'; // GANTI NOMOR ADMIN
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank');
+}
+</script>
+
+</body>
+</html>
