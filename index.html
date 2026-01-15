@@ -1,155 +1,46 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Penukaran Saldo PayPal ke IDR</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  padding: 20px;
-}
-.container {
-  max-width: 600px;
-  background: #fff;
-  padding: 20px;
-  margin: auto;
-  border-radius: 8px;
-}
-h2, h3 {
-  color: #333;
-}
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 6px;
-  margin-bottom: 14px;
-}
-button {
-  background: #25D366;
-  color: white;
-  border: none;
-  padding: 12px;
-  width: 100%;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-small {
-  color: #666;
-}
-.box {
-  background: #f0f0f0;
-  padding: 12px;
-  border-radius: 6px;
-  margin-bottom: 15px;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Tukar Saldo PayPal ke Rupiah</title>
 </head>
-
 <body>
 
-<div class="container">
+<h1>Tukar Saldo PayPal ke IDR</h1>
 
-<h2>Penukaran Saldo PayPal → IDR</h2>
+<p>
+  Layanan penukaran saldo PayPal ke Rupiah Indonesia.
+  <strong>Transaksi dilakukan secara manual</strong> melalui konfirmasi WhatsApp.
+</p>
 
-<p>Silakan isi data di bawah ini, lalu <b>konfirmasi terlebih dahulu ke admin via WhatsApp</b>.
-Pembayaran PayPal dilakukan <b>setelah disetujui admin</b>.</p>
-
-<hr>
-
-<h3>📋 Data Penukaran</h3>
-
-<label>Nominal Saldo (USD)</label>
-<input type="number" id="amount" step="0.01" placeholder="Contoh: 50">
-
-<label>Email PayPal</label>
-<input type="email" id="email" placeholder="email@paypal.com">
-
-<label>Nama Bank (IDR)</label>
-<input type="text" id="bank" placeholder="BCA / BNI / Mandiri">
-
-<label>No Rekening</label>
-<input type="text" id="rekening" placeholder="1234567890">
-
-<label>Nama Pemilik Rekening</label>
-<input type="text" id="nama" placeholder="Sesuai buku tabungan">
-
-<hr>
-
-<h3>💰 Fee & Informasi</h3>
-<div class="box">
+<h3>Informasi Layanan</h3>
 <ul>
-  <li>Fee layanan: <b>5%</b> dari saldo PayPal</li>
-  <li>Kurs IDR mengikuti kurs internal</li>
-  <li>Proses manual (estimasi 5–30 menit)</li>
-  <li>Maksimal proses 1x24 jam</li>
+  <li>Minimal transaksi: $10</li>
+  <li>Fee layanan: 5%</li>
+  <li>Proses: Manual (dicek admin)</li>
+  <li>Waktu proses: 5–30 menit</li>
 </ul>
-</div>
 
-<h3>📄 Syarat & Ketentuan</h3>
-<div class="box">
-<ul>
-  <li>Wajib konfirmasi via WhatsApp sebelum pembayaran</li>
-  <li>Pembayaran tanpa persetujuan admin tidak diproses</li>
-  <li>Pembayaran menggunakan akun PayPal milik sendiri</li>
-  <li>Tidak menerima saldo bermasalah / sengketa</li>
-  <li>Kesalahan data rekening tanggung jawab user</li>
-  <li>Tidak tersedia refund setelah pembayaran</li>
-</ul>
-</div>
+<h3>Cara Transaksi</h3>
+<ol>
+  <li>Hubungi admin via WhatsApp</li>
+  <li>Sepakati nominal & fee</li>
+  <li>Admin mengirim email PayPal tujuan</li>
+  <li>Transfer PayPal secara manual</li>
+  <li>Kirim bukti transfer</li>
+  <li>Saldo IDR dikirim</li>
+</ol>
 
-<label>
-<input type="checkbox" id="agree">
- Saya telah membaca dan menyetujui syarat & ketentuan
-</label>
+<p>
+  <a href="terms.html" target="_blank">Baca Syarat & Ketentuan</a>
+</p>
 
-<br><br>
-
-<button onclick="sendWhatsApp()">Konfirmasi via WhatsApp</button>
-
-<small>
-⚠️ Kami bukan afiliasi resmi PayPal. Layanan ini bersifat manual.
-</small>
-
-</div>
-
-<script>
-function sendWhatsApp() {
-  if (!document.getElementById('agree').checked) {
-    alert('Silakan setujui syarat & ketentuan terlebih dahulu.');
-    return;
-  }
-
-  const amount = document.getElementById('amount').value;
-  const email = document.getElementById('email').value;
-  const bank = document.getElementById('bank').value;
-  const rekening = document.getElementById('rekening').value;
-  const nama = document.getElementById('nama').value;
-
-  const message = `
-Halo Admin,
-Saya ingin menukarkan saldo PayPal ke IDR.
-
-Detail:
-- Nominal USD: ${amount}
-- Email PayPal: ${email}
-- Bank: ${bank}
-- No Rekening: ${rekening}
-- Nama Rekening: ${nama}
-
-Mohon konfirmasi apakah transaksi bisa diproses.
-Terima kasih.
-  `;
-
-  window.open(
-    'https://wa.me/6281234567890?text=' + encodeURIComponent(message),
-    '_blank'
-  );
-}
-</script>
+<a
+  href="https://wa.me/628XXXXXXXXX?text=Halo%20Admin,%20saya%20ingin%20menukar%20saldo%20PayPal"
+  target="_blank"
+>
+  <button>Konfirmasi via WhatsApp</button>
+</a>
 
 </body>
-  </html>
+</html>
