@@ -5,68 +5,145 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PayRupiah – Tukar PayPal ke IDR</title>
 
+<!-- Favicon -->
 <link rel="icon" href="favicon.ico">
+
+<!-- SEO -->
+<meta name="description" content="Layanan penukaran saldo PayPal ke Rupiah secara manual, aman, transparan, dan cepat.">
 
 <style>
 :root{
   --bg:#0f172a;
   --card:#111827;
+  --soft:#020617;
   --accent:#3b82f6;
+  --green:#16a34a;
   --grad:linear-gradient(135deg,#3b82f6,#06b6d4);
 }
-*{box-sizing:border-box;font-family:Inter,Arial}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI}
 body{
   margin:0;background:var(--bg);color:#e5e7eb;
-  display:flex;justify-content:center;padding:30px
+  display:flex;justify-content:center;padding:24px
 }
-.container{max-width:900px;width:100%}
+.container{max-width:960px;width:100%}
+
+/* HEADER */
 header{
-  display:flex;align-items:center;justify-content:space-between;margin-bottom:25px
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:24px
 }
 .logo{
-  display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px
+  display:flex;align-items:center;gap:10px;
+  font-size:20px;font-weight:700
 }
+.logo svg{width:28px;height:28px}
 .badge{
-  background:#16a34a;padding:4px 10px;border-radius:20px;font-size:12px
+  background:var(--green);
+  padding:5px 12px;
+  border-radius:999px;
+  font-size:12px
 }
+
+/* CARD */
 .card{
-  background:var(--card);border-radius:16px;padding:20px;
-  margin-bottom:20px;box-shadow:0 20px 40px rgba(0,0,0,.4)
+  background:var(--card);
+  border-radius:18px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+  transition:.3s
 }
-h3{margin-top:0}
-.row{display:flex;gap:15px;flex-wrap:wrap}
+.card:hover{
+  background:linear-gradient(135deg,#111827,#020617)
+}
+h2,h3{margin-top:0}
+
+/* FORM */
+.row{
+  display:flex;gap:16px;flex-wrap:wrap
+}
+.field{flex:1}
+label{
+  font-size:13px;opacity:.75
+}
 input{
-  width:100%;padding:12px;border-radius:10px;border:none;
-  background:#020617;color:#fff;font-size:15px
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border:none;
+  border-radius:12px;
+  background:var(--soft);
+  color:#fff;
+  font-size:15px
 }
-label{font-size:13px;opacity:.8}
+input:disabled{opacity:.7}
+
+/* BUTTON */
 button{
-  width:100%;padding:14px;border:none;border-radius:12px;
-  background:var(--grad);color:#fff;font-size:16px;
-  cursor:pointer;transition:.3s
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:var(--grad);
+  color:#fff;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s
 }
 button:hover{filter:brightness(1.1)}
 button:disabled{opacity:.4;cursor:not-allowed}
-.flex3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.small{font-size:12px;opacity:.7}
-.checkbox{display:flex;align-items:center;gap:8px;margin-top:10px}
-ul{padding-left:18px;font-size:14px}
-li{margin-bottom:6px}
+
+/* CHECKBOX */
+.checkbox{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+  font-size:14px
+}
+
+/* LOG */
+.log{
+  font-size:13px;
+  opacity:.85;
+  padding-left:18px
+}
+
+/* FOOTER */
 footer{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:15px;text-align:center
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:30px
 }
 footer div{
-  background:#020617;padding:12px;border-radius:12px
+  background:var(--soft);
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-size:14px
 }
-.log{font-size:13px;opacity:.85}
-svg{width:26px;height:26px}
+footer a{
+  color:#93c5fd;
+  text-decoration:none;
+  font-size:13px
+}
+footer a:hover{text-decoration:underline}
+
+.small{
+  font-size:12px;
+  opacity:.65;
+  margin-top:6px
+}
 </style>
 </head>
 
 <body>
 <div class="container">
 
+<!-- HEADER -->
 <header>
   <div class="logo">
     <svg viewBox="0 0 24 24" fill="#3b82f6">
@@ -82,22 +159,22 @@ svg{width:26px;height:26px}
 <h3>Kalkulator PayPal → Rupiah</h3>
 
 <div class="row">
-  <div style="flex:1">
-    <label>Nominal USD</label>
-    <input id="usd" type="number" min="5" placeholder="Contoh: 50">
+  <div class="field">
+    <label>Nominal PayPal (USD)</label>
+    <input type="number" id="usd" min="5" placeholder="Contoh: 50">
   </div>
-  <div style="flex:1">
+  <div class="field">
     <label>Kurs USD (IDR)</label>
     <input id="rate" value="16300" disabled>
   </div>
 </div>
 
 <div class="row">
-  <div style="flex:1">
+  <div class="field">
     <label>Fee (USD)</label>
     <input id="fee" disabled>
   </div>
-  <div style="flex:1">
+  <div class="field">
     <label>Diterima (IDR)</label>
     <input id="idr" disabled>
   </div>
@@ -105,10 +182,10 @@ svg{width:26px;height:26px}
 
 <div class="checkbox">
   <input type="checkbox" id="agree">
-  <label>Saya setuju dengan Syarat & Ketentuan</label>
+  <label>Saya menyetujui <a href="term.html">Syarat & Ketentuan</a></label>
 </div>
 
-<p class="small">* Estimasi, kurs dikunci saat konfirmasi admin</p>
+<p class="small">* Estimasi. Kurs dikunci saat admin konfirmasi.</p>
 
 <button id="btn" disabled onclick="kirimWA()">Lanjutkan via WhatsApp</button>
 </div>
@@ -119,38 +196,22 @@ svg{width:26px;height:26px}
 <ul id="log" class="log"></ul>
 </div>
 
-<!-- SYARAT -->
-<div class="card">
-<h3>Syarat & Ketentuan</h3>
-<ul>
-<li>Transaksi diproses manual oleh admin.</li>
-<li>Minimal transaksi USD 5.</li>
-<li>Fee bersifat tetap sesuai nominal:</li>
-<ul>
-<li>USD 5 – 9,99 → Fee USD 0,7</li>
-<li>USD 10 – 49,99 → Fee USD 1</li>
-<li>USD 50 – 99,99 → Fee USD 1,7</li>
-<li>USD 100 – 149,99 → Fee USD 2</li>
-<li>USD 150 – 199,99 → Fee USD 2,5</li>
-<li>≥ USD 200 → Fee USD 3</li>
-</ul>
-<li>Transaksi yang sudah dikonfirmasi tidak dapat dibatalkan.</li>
-</ul>
-</div>
-
+<!-- FOOTER -->
 <footer>
-<div>
-<b>Alamat</b><br>
-Indonesia
-</div>
-<div>
-<b>Kontak</b><br>
-WhatsApp Admin
-</div>
-<div>
-<b>Layanan</b><br>
-PayPal → IDR
-</div>
+  <div>
+    <b>Informasi</b><br>
+    <a href="faq.html">FAQ</a><br>
+    <a href="trust.html">Trust</a>
+  </div>
+  <div>
+    <b>Legal</b><br>
+    <a href="term.html">S&K</a><br>
+    <a href="disclaimer.html">Disclaimer</a>
+  </div>
+  <div>
+    <b>Kontak</b><br>
+    WhatsApp Admin
+  </div>
 </footer>
 
 </div>
@@ -165,45 +226,51 @@ btn=document.getElementById("btn"),
 log=document.getElementById("log");
 
 function feeCalc(u){
- if(u>=200)return 3;
- if(u>=150)return 2.5;
- if(u>=100)return 2;
- if(u>=50)return 1.7;
- if(u>=10)return 1;
- return 0.7;
+  if(u>=200) return 3;
+  if(u>=150) return 2.5;
+  if(u>=100) return 2;
+  if(u>=50)  return 1.7;
+  if(u>=10)  return 1;
+  return 0.7;
 }
 
 function calc(){
- let u=parseFloat(usd.value);
- if(!u||u<5){btn.disabled=true;return;}
- let f=feeCalc(u);
- let total=(u-f)*rate.value;
- fee.value=f;
- idr.value="Rp "+total.toLocaleString("id-ID");
- if(agree.checked)btn.disabled=false;
- addLog(`USD ${u} → Rp ${total.toLocaleString("id-ID")}`);
+  let u=parseFloat(usd.value);
+  if(!u || u<5){
+    btn.disabled=true;
+    fee.value="";
+    idr.value="";
+    return;
+  }
+  let f=feeCalc(u);
+  let total=(u-f)*rate.value;
+
+  fee.value=f;
+  idr.value="Rp "+total.toLocaleString("id-ID");
+
+  if(agree.checked) btn.disabled=false;
+
+  addLog(`USD ${u} → Rp ${total.toLocaleString("id-ID")}`);
 }
 
-function addLog(t){
- let li=document.createElement("li");
- li.innerText=t;
- log.prepend(li);
- if(log.children.length>5)log.removeChild(log.lastChild);
+function addLog(text){
+  let li=document.createElement("li");
+  li.innerText=text;
+  log.prepend(li);
+  if(log.children.length>5) log.removeChild(log.lastChild);
 }
 
 function kirimWA(){
- let u=usd.value,f=fee.value,r=rate.value;
- let idrVal=idr.value;
- let msg=`Halo Admin PayRupiah 👋
+  let msg=`Halo Admin PayRupiah 👋
 
 Detail transaksi:
-• USD : $${u}
-• Fee : $${f}
-• Rate: ${r}
-• Estimasi: ${idrVal}
+• USD: $${usd.value}
+• Fee: $${fee.value}
+• Rate: ${rate.value}
+• Estimasi: ${idr.value}
 
 Mohon konfirmasi. Terima kasih.`;
- window.open("https://wa.me/628XXXXXXXXX?text="+encodeURIComponent(msg));
+  window.open("https://wa.me/628XXXXXXXXX?text="+encodeURIComponent(msg));
 }
 
 usd.addEventListener("input",calc);
