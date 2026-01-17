@@ -1,21 +1,19 @@
 {
   "name": "PayRupiah",
   "short_name": "PayRupiah",
-  "description": "Layanan penukaran saldo PayPal ke Rupiah secara manual dan aman",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
-  "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon-192.png",
-      "sizes": "192x192",
+      "src": "favicon-256.png",
+      "sizes": "256x256",
       "type": "image/png"
     },
     {
-      "src": "favicon-512.png",
-      "sizes": "512x512",
+      "src": "favicon-128.png",
+      "sizes": "128x128",
       "type": "image/png"
     }
   ]
