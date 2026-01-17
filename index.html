@@ -3,226 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayRupiah – Tukar PayPal ke Rupiah</title>
+<title>PayRupiah – Tukar PayPal ke IDR</title>
+
+<link rel="icon" href="favicon.ico">
 
 <style>
 :root{
---bg:#f2f4f7;--card:#fff;--text:#111;
---primary:#0d6efd;
---grad:linear-gradient(135deg,#0d6efd,#38bdf8);
+  --bg:#0f172a;
+  --card:#111827;
+  --accent:#3b82f6;
+  --grad:linear-gradient(135deg,#3b82f6,#06b6d4);
 }
-body.dark{
---bg:#0f172a;--card:#111827;--text:#e5e7eb;
---primary:#38bdf8;
---grad:linear-gradient(135deg,#0ea5e9,#38bdf8);
+*{box-sizing:border-box;font-family:Inter,Arial}
+body{
+  margin:0;background:var(--bg);color:#e5e7eb;
+  display:flex;justify-content:center;padding:30px
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Segoe UI;background:var(--bg);color:var(--text);transition:.3s}
-.container{max-width:900px;margin:auto;padding:15px}
-
-/* HERO */
-.hero{
-background:var(--grad);color:#fff;
-padding:40px 20px;border-radius:20px;
-text-align:center;position:relative
+.container{max-width:900px;width:100%}
+header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:25px
 }
-.toggle{position:absolute;top:15px;left:15px;cursor:pointer}
-.badge{position:absolute;top:15px;right:15px;background:#22c55e;
-padding:6px 12px;border-radius:20px;font-size:13px}
-
-/* LOGO */
-.logo svg{width:64px;margin-bottom:10px}
-
-/* MENU */
-.menu{
-display:grid;grid-template-columns:repeat(3,1fr);
-gap:15px;margin:25px 0
+.logo{
+  display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px
 }
-.menu a{
-background:var(--card);padding:20px 10px;
-border-radius:16px;text-align:center;
-text-decoration:none;color:var(--primary);
-font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.1);
-transition:.3s
+.badge{
+  background:#16a34a;padding:4px 10px;border-radius:20px;font-size:12px
 }
-.menu a:hover{transform:translateY(-5px);background:var(--grad);color:#fff}
-.menu svg{width:32px;margin-bottom:5px;fill:currentColor}
-
-/* CARD */
 .card{
-background:var(--card);border-radius:20px;
-padding:25px;box-shadow:0 12px 30px rgba(0,0,0,.1);
-margin-bottom:25px
+  background:var(--card);border-radius:16px;padding:20px;
+  margin-bottom:20px;box-shadow:0 20px 40px rgba(0,0,0,.4)
 }
-h2{color:var(--primary)}
-
-/* FORM */
-label{margin-top:12px;display:block;font-weight:600}
+h3{margin-top:0}
+.row{display:flex;gap:15px;flex-wrap:wrap}
 input{
-width:100%;padding:12px;border-radius:10px;
-border:1px solid #ccc;margin-top:6px
+  width:100%;padding:12px;border-radius:10px;border:none;
+  background:#020617;color:#fff;font-size:15px
 }
-.result{
-margin-top:15px;padding:15px;
-border-radius:12px;background:rgba(0,0,0,.05)
+label{font-size:13px;opacity:.8}
+button{
+  width:100%;padding:14px;border:none;border-radius:12px;
+  background:var(--grad);color:#fff;font-size:16px;
+  cursor:pointer;transition:.3s
 }
-.checkbox{margin-top:12px;display:flex;gap:8px;font-size:14px}
-.btn{
-display:block;text-align:center;
-background:#25d366;color:#fff;
-padding:14px;border-radius:14px;
-margin-top:15px;text-decoration:none;
-font-weight:bold;opacity:.5;pointer-events:none
+button:hover{filter:brightness(1.1)}
+button:disabled{opacity:.4;cursor:not-allowed}
+.flex3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.small{font-size:12px;opacity:.7}
+.checkbox{display:flex;align-items:center;gap:8px;margin-top:10px}
+ul{padding-left:18px;font-size:14px}
+li{margin-bottom:6px}
+footer{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:15px;text-align:center
 }
-.btn.active{opacity:1;pointer-events:auto}
-
-/* LOG TABLE */
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:8px;border-bottom:1px solid #ddd;text-align:center}
-th{background:rgba(0,0,0,.05)}
-
-/* POPUP */
-.popup{
-position:fixed;inset:0;background:rgba(0,0,0,.5);
-display:none;align-items:center;justify-content:center
+footer div{
+  background:#020617;padding:12px;border-radius:12px
 }
-.popup-content{
-background:var(--card);padding:25px;
-border-radius:18px;max-width:500px;width:90%
-}
-
-/* ANIMATION */
-.reveal{opacity:0;transform:translateY(30px);transition:.6s}
-.reveal.show{opacity:1;transform:none}
+.log{font-size:13px;opacity:.85}
+svg{width:26px;height:26px}
 </style>
 </head>
 
 <body>
 <div class="container">
 
-<!-- HERO -->
-<div class="hero reveal">
-<div class="toggle" onclick="dark()">🌙</div>
-<div class="badge">● Online</div>
-
-<div class="logo">
-<svg viewBox="0 0 100 100">
-<circle cx="50" cy="50" r="45" fill="#fff"/>
-<text x="50%" y="58%" text-anchor="middle"
-font-size="40" fill="#0d6efd" font-weight="bold">Rp</text>
-</svg>
-</div>
-
-<h1>PayRupiah</h1>
-<p>Tukar Saldo PayPal ke Rupiah</p>
-<small>Proses manual via WhatsApp</small>
-</div>
-
-<!-- MENU -->
-<div class="menu reveal">
-<a href="#"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/></svg>Alamat</a>
-<a href="https://wa.me/628xxxxxxxxx"><svg viewBox="0 0 24 24"><path d="M20 3H4v18l4-4h12z"/></svg>Kontak</a>
-<a href="#" onclick="openSK()"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg>S&K</a>
-</div>
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="#3b82f6">
+      <path d="M12 2L2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5z"/>
+    </svg>
+    PayRupiah
+  </div>
+  <span class="badge">● Online</span>
+</header>
 
 <!-- KALKULATOR -->
-<div class="card reveal">
-<h2>Kalkulator Estimasi</h2>
+<div class="card">
+<h3>Kalkulator PayPal → Rupiah</h3>
 
-<label>Saldo PayPal (USD)</label>
-<input type="number" id="usd" min="5" oninput="calc()">
+<div class="row">
+  <div style="flex:1">
+    <label>Nominal USD</label>
+    <input id="usd" type="number" min="5" placeholder="Contoh: 50">
+  </div>
+  <div style="flex:1">
+    <label>Kurs USD (IDR)</label>
+    <input id="rate" value="16300" disabled>
+  </div>
+</div>
 
-<label>Rate USD → IDR</label>
-<input type="number" value="16300" readonly>
-
-<div class="result" id="res">Minimal transaksi $5</div>
+<div class="row">
+  <div style="flex:1">
+    <label>Fee (USD)</label>
+    <input id="fee" disabled>
+  </div>
+  <div style="flex:1">
+    <label>Diterima (IDR)</label>
+    <input id="idr" disabled>
+  </div>
+</div>
 
 <div class="checkbox">
-<input type="checkbox" id="agree" onchange="check()">
-<label>Saya setuju dengan Syarat & Ketentuan</label>
+  <input type="checkbox" id="agree">
+  <label>Saya setuju dengan Syarat & Ketentuan</label>
 </div>
 
-<a id="wa" class="btn">Konfirmasi via WhatsApp</a>
+<p class="small">* Estimasi, kurs dikunci saat konfirmasi admin</p>
+
+<button id="btn" disabled onclick="kirimWA()">Lanjutkan via WhatsApp</button>
 </div>
 
-<!-- LOG TRANSAKSI -->
-<div class="card reveal">
-<h2>Log Transaksi (Admin)</h2>
-<div id="log"></div>
+<!-- LOG -->
+<div class="card">
+<h3>📜 Log Estimasi Terakhir</h3>
+<ul id="log" class="log"></ul>
 </div>
 
-</div>
-
-<!-- POPUP S&K -->
-<div class="popup" id="sk">
-<div class="popup-content">
+<!-- SYARAT -->
+<div class="card">
 <h3>Syarat & Ketentuan</h3>
-<p>
-• Proses manual oleh admin<br>
-• Fee bersifat tetap sesuai nominal<br>
-• Kurs dikunci saat konfirmasi<br>
-• Transaksi tidak dapat dibatalkan
-</p>
-<button onclick="closeSK()">Tutup</button>
+<ul>
+<li>Transaksi diproses manual oleh admin.</li>
+<li>Minimal transaksi USD 5.</li>
+<li>Fee bersifat tetap sesuai nominal:</li>
+<ul>
+<li>USD 5 – 9,99 → Fee USD 0,7</li>
+<li>USD 10 – 49,99 → Fee USD 1</li>
+<li>USD 50 – 99,99 → Fee USD 1,7</li>
+<li>USD 100 – 149,99 → Fee USD 2</li>
+<li>USD 150 – 199,99 → Fee USD 2,5</li>
+<li>≥ USD 200 → Fee USD 3</li>
+</ul>
+<li>Transaksi yang sudah dikonfirmasi tidak dapat dibatalkan.</li>
+</ul>
 </div>
+
+<footer>
+<div>
+<b>Alamat</b><br>
+Indonesia
+</div>
+<div>
+<b>Kontak</b><br>
+WhatsApp Admin
+</div>
+<div>
+<b>Layanan</b><br>
+PayPal → IDR
+</div>
+</footer>
+
 </div>
 
 <script>
-const RATE=16300;
+const usd=document.getElementById("usd"),
+rate=document.getElementById("rate"),
+fee=document.getElementById("fee"),
+idr=document.getElementById("idr"),
+agree=document.getElementById("agree"),
+btn=document.getElementById("btn"),
+log=document.getElementById("log");
 
-function fee(u){
-if(u<10) return 0.7;
-if(u<50) return 1;
-if(u<100) return 1.7;
-if(u<150) return 2;
-if(u<200) return 2.5;
-return 3;
+function feeCalc(u){
+ if(u>=200)return 3;
+ if(u>=150)return 2.5;
+ if(u>=100)return 2;
+ if(u>=50)return 1.7;
+ if(u>=10)return 1;
+ return 0.7;
 }
 
 function calc(){
-let u=+usd.value;
-if(u<5){res.innerHTML="Minimal transaksi $5";return;}
-let f=fee(u),net=u-f,idr=net*RATE;
-res.innerHTML=`Fee: $${f}<br>Diterima: $${net}<br><b>Rp ${idr.toLocaleString("id-ID")}</b>`;
-wa.href=`https://wa.me/628xxxxxxxxx?text=Tukar PayPal $${u}`;
+ let u=parseFloat(usd.value);
+ if(!u||u<5){btn.disabled=true;return;}
+ let f=feeCalc(u);
+ let total=(u-f)*rate.value;
+ fee.value=f;
+ idr.value="Rp "+total.toLocaleString("id-ID");
+ if(agree.checked)btn.disabled=false;
+ addLog(`USD ${u} → Rp ${total.toLocaleString("id-ID")}`);
 }
 
-function check(){wa.classList.toggle("active",agree.checked)}
-
-wa.onclick=()=>{
-let u=+usd.value;
-if(!agree.checked||u<5)return;
-let f=fee(u),net=u-f,idr=net*RATE;
-let logs=JSON.parse(localStorage.getItem("payrupiah_log"))||[];
-logs.unshift({
-time:new Date().toLocaleString("id-ID"),
-usd:u,fee:f,idr:idr,status:"Pending"
-});
-localStorage.setItem("payrupiah_log",JSON.stringify(logs));
-renderLog();
+function addLog(t){
+ let li=document.createElement("li");
+ li.innerText=t;
+ log.prepend(li);
+ if(log.children.length>5)log.removeChild(log.lastChild);
 }
 
-function renderLog(){
-let logs=JSON.parse(localStorage.getItem("payrupiah_log"))||[];
-let h="<table><tr><th>Tanggal</th><th>USD</th><th>Fee</th><th>IDR</th><th>Status</th></tr>";
-logs.forEach(l=>{
-h+=`<tr><td>${l.time}</td><td>$${l.usd}</td><td>$${l.fee}</td><td>Rp ${l.idr.toLocaleString("id-ID")}</td><td>${l.status}</td></tr>`;
-});
-h+="</table>";
-log.innerHTML=h;
+function kirimWA(){
+ let u=usd.value,f=fee.value,r=rate.value;
+ let idrVal=idr.value;
+ let msg=`Halo Admin PayRupiah 👋
+
+Detail transaksi:
+• USD : $${u}
+• Fee : $${f}
+• Rate: ${r}
+• Estimasi: ${idrVal}
+
+Mohon konfirmasi. Terima kasih.`;
+ window.open("https://wa.me/628XXXXXXXXX?text="+encodeURIComponent(msg));
 }
-renderLog();
 
-function dark(){document.body.classList.toggle("dark")}
-function openSK(){sk.style.display="flex"}
-function closeSK(){sk.style.display="none"}
-
-document.querySelectorAll('.reveal').forEach(el=>{
-new IntersectionObserver(e=>{
-if(e[0].isIntersecting)el.classList.add("show")
-}).observe(el)
-});
+usd.addEventListener("input",calc);
+agree.addEventListener("change",()=>btn.disabled=!agree.checked);
 </script>
 
 </body>
-  </html>
+      </html>
