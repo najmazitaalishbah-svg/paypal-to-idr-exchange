@@ -1,19 +1,22 @@
 {
   "name": "PayRupiah",
   "short_name": "PayRupiah",
+  "description": "Layanan tukar saldo PayPal ke Rupiah secara manual, aman, dan terpercaya.",
   "start_url": "/index.html",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "favicon-256.png",
-      "sizes": "256x256",
+      "src": "favicon/android-chrome-192x192.png",
+      "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "favicon-128.png",
-      "sizes": "128x128",
+      "src": "favicon/android-chrome-512x512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
