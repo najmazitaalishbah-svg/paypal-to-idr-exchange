@@ -3,200 +3,225 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayRupiah</title>
+<title>PayRupiah – Tukar PayPal ke Rupiah</title>
+
 <style>
-* { box-sizing:border-box; margin:0; padding:0; }
-
-body{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(120deg,#f0f2f5,#e0e7ff);
-  color:#333; line-height:1.6;
-  animation: fadeInBody 1s ease-in;
+:root{
+--bg:#f2f4f7;--card:#fff;--text:#111;
+--primary:#0d6efd;
+--grad:linear-gradient(135deg,#0d6efd,#38bdf8);
 }
-@keyframes fadeInBody{ from{opacity:0;} to{opacity:1;} }
-
-.container{
-  max-width:800px;
-  margin:40px auto;
-  background:#fff;
-  padding:30px 20px;
-  border-radius:16px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
-  transition:transform 0.3s ease;
+body.dark{
+--bg:#0f172a;--card:#111827;--text:#e5e7eb;
+--primary:#38bdf8;
+--grad:linear-gradient(135deg,#0ea5e9,#38bdf8);
 }
-.container:hover{ transform:translateY(-3px); }
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI;background:var(--bg);color:var(--text);transition:.3s}
+.container{max-width:900px;margin:auto;padding:15px}
 
-header{text-align:center; margin-bottom:25px;}
-header h1{ color:#0d6efd; font-size:36px; animation:slideDown 0.8s ease forwards; }
-header p{ font-size:16px; color:#555; margin-top:5px; }
-@keyframes slideDown{ from{transform:translateY(-20px);opacity:0;} to{transform:translateY(0);opacity:1;} }
-
-/* NAV MENU HORIZONTAL */
-.nav-menu{ display:flex; justify-content:center; gap:30px; margin-top:10px; flex-wrap:wrap; }
-.nav-menu a{
-  text-decoration:none; color:#0d6efd; font-weight:bold;
-  transition:0.3s;
+/* HERO */
+.hero{
+background:var(--grad);color:#fff;
+padding:40px 20px;border-radius:20px;
+text-align:center;position:relative
 }
-.nav-menu a:hover{ color:#0b5ed7; }
+.toggle{position:absolute;top:15px;left:15px;cursor:pointer}
+.badge{position:absolute;top:15px;right:15px;background:#22c55e;
+padding:6px 12px;border-radius:20px;font-size:13px}
 
-/* BOX */
-.box{
-  background:#f9fafb; padding:20px; border-radius:12px; margin:15px 0;
-  transition:transform 0.3s, box-shadow 0.3s;
+/* LOGO */
+.logo svg{width:64px;margin-bottom:10px}
+
+/* MENU */
+.menu{
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:15px;margin:25px 0
 }
-.box:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.08);}
-.box h3{ color:#0d6efd; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
-.box ul{ padding-left:20px; }
-.box input{ width:100%; padding:12px; margin:8px 0; border-radius:6px; border:1px solid #ccc; font-size:14px; transition:0.3s; }
-.box input:focus{ border-color:#0d6efd; outline:none; box-shadow:0 0 6px rgba(13,110,253,0.3); }
+.menu a{
+background:var(--card);padding:20px 10px;
+border-radius:16px;text-align:center;
+text-decoration:none;color:var(--primary);
+font-weight:600;box-shadow:0 8px 20px rgba(0,0,0,.1);
+transition:.3s
+}
+.menu a:hover{transform:translateY(-5px);background:var(--grad);color:#fff}
+.menu svg{width:32px;margin-bottom:5px;fill:currentColor}
 
-/* BUTTONS */
+/* CARD */
+.card{
+background:var(--card);border-radius:20px;
+padding:25px;box-shadow:0 12px 30px rgba(0,0,0,.1);
+margin-bottom:25px
+}
+h2{color:var(--primary)}
+
+/* FORM */
+label{margin-top:12px;display:block;font-weight:600}
+input{
+width:100%;padding:12px;border-radius:10px;
+border:1px solid #ccc;margin-top:6px
+}
+.result{
+margin-top:15px;padding:15px;
+border-radius:12px;background:rgba(0,0,0,.05)
+}
+.checkbox{margin-top:12px;display:flex;gap:8px;font-size:14px}
 .btn{
-  display:inline-block; margin:10px 5px; padding:15px 25px; border-radius:12px;
-  text-decoration:none; font-weight:bold; font-size:16px; color:#fff; transition:all 0.3s ease;
-  cursor:pointer;
+display:block;text-align:center;
+background:#25d366;color:#fff;
+padding:14px;border-radius:14px;
+margin-top:15px;text-decoration:none;
+font-weight:bold;opacity:.5;pointer-events:none
 }
-.btn-primary{ background:#0d6efd; }
-.btn-primary:hover{ background:#0b5ed7; transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2);}
-.btn-green{ background:#25D366; }
-.btn-green:hover{ background:#1ebc57; transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.2); }
-.btn:active{ transform:scale(0.95); }
+.btn.active{opacity:1;pointer-events:auto}
 
-/* RESULT */
-#result{
-  background:#fff4e5; border:1px solid #ffc107; border-radius:12px;
-  padding:20px; font-size:16px; margin-top:12px; text-align:center;
-  box-shadow:0 6px 15px rgba(0,0,0,0.05);
-  opacity:0; transition: all 0.5s ease; position:relative;
+/* LOG TABLE */
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:8px;border-bottom:1px solid #ddd;text-align:center}
+th{background:rgba(0,0,0,.05)}
+
+/* POPUP */
+.popup{
+position:fixed;inset:0;background:rgba(0,0,0,.5);
+display:none;align-items:center;justify-content:center
 }
-#result.show{ opacity:1; }
-#result strong{ color:#d63384; font-size:18px; }
-#result .fee{ color:#e83e8c; font-weight:bold; }
-
-/* COIN ANIMASI */
-.coin{ display:inline-block; margin-right:6px; animation: coinBounce 1s infinite; }
-@keyframes coinBounce{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-6px);} }
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  header h1{ font-size:28px; }
-  .btn{ font-size:14px; padding:12px 20px; }
-  .nav-menu{ flex-direction:column; gap:10px; }
+.popup-content{
+background:var(--card);padding:25px;
+border-radius:18px;max-width:500px;width:90%
 }
+
+/* ANIMATION */
+.reveal{opacity:0;transform:translateY(30px);transition:.6s}
+.reveal.show{opacity:1;transform:none}
 </style>
 </head>
-<body>
 
+<body>
 <div class="container">
 
-  <!-- HEADER -->
-  <header>
-    <h1>PayRupiah</h1>
-    <p>Tukar Saldo PayPal ke Rupiah • Aman & Manual<br>Diproses langsung oleh admin via WhatsApp</p>
-    <div class="nav-menu">
-      <a href="#alamat">🏠 Alamat</a>
-      <a href="#kontak">📞 Kontak</a>
-      <a href="terms.html">Syarat & Ketentuan</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-  </header>
+<!-- HERO -->
+<div class="hero reveal">
+<div class="toggle" onclick="dark()">🌙</div>
+<div class="badge">● Online</div>
 
-  <!-- INFO BOX -->
-  <div class="box">
-    <h3>Kenapa Memilih Layanan Ini?</h3>
-    <ul>
-      <li>✅ Admin real, bukan bot</li>
-      <li>✅ Proses manual & transparan</li>
-      <li>✅ Nominal & rate disepakati di awal</li>
-      <li>✅ Bukti transfer dicek manual</li>
-      <li>✅ Aman & terpercaya</li>
-    </ul>
-  </div>
+<div class="logo">
+<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="45" fill="#fff"/>
+<text x="50%" y="58%" text-anchor="middle"
+font-size="40" fill="#0d6efd" font-weight="bold">Rp</text>
+</svg>
+</div>
 
-  <!-- KALKULATOR -->
-  <div class="box">
-    <h3>💰 Kalkulator Estimasi</h3>
+<h1>PayRupiah</h1>
+<p>Tukar Saldo PayPal ke Rupiah</p>
+<small>Proses manual via WhatsApp</small>
+</div>
 
-    <label>Saldo PayPal (USD)</label>
-    <input type="number" id="usd" placeholder="Contoh: 50">
+<!-- MENU -->
+<div class="menu reveal">
+<a href="#"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v9h-5v-6H11v6H6v-9H3z"/></svg>Alamat</a>
+<a href="https://wa.me/628xxxxxxxxx"><svg viewBox="0 0 24 24"><path d="M20 3H4v18l4-4h12z"/></svg>Kontak</a>
+<a href="#" onclick="openSK()"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/></svg>S&K</a>
+</div>
 
-    <label>Rate USD → IDR</label>
-    <input type="number" id="rate" value="16300">
+<!-- KALKULATOR -->
+<div class="card reveal">
+<h2>Kalkulator Estimasi</h2>
 
-    <div id="result">
-      Masukkan nominal untuk melihat estimasi.
-    </div>
-    <p style="font-size:13px;color:#777;margin-top:8px">
-      *Klik hasil untuk copy. Nominal final mengikuti kesepakatan admin.
-    </p>
-  </div>
+<label>Saldo PayPal (USD)</label>
+<input type="number" id="usd" min="5" oninput="calc()">
 
-  <!-- CTA BUTTONS -->
-  <div style="text-align:center; margin-top:20px;">
-    <a href="confirm.html" class="btn btn-primary">📄 Konfirmasi Transfer</a>
-    <a href="https://wa.me/628XXXXXXXXX" target="_blank" class="btn btn-green">💬 Chat Admin</a>
-  </div>
+<label>Rate USD → IDR</label>
+<input type="number" value="16300" readonly>
 
-  <!-- ALAMAT & KONTAK HORIZONTAL -->
-  <div style="display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:20px;">
-    <div class="box" id="alamat" style="flex:1; min-width:200px;">
-      <h3>🏠 Alamat</h3>
-      <p>Jl. Contoh No.123, Jakarta, Indonesia</p>
-    </div>
-    <div class="box" id="kontak" style="flex:1; min-width:200px;">
-      <h3>📞 Kontak</h3>
-      <p>Email: admin@payrupiah.com</p>
-      <p>WhatsApp: <a href="https://wa.me/628XXXXXXXXX" target="_blank">+62 812-XXXX-XXXX</a></p>
-    </div>
-  </div>
+<div class="result" id="res">Minimal transaksi $5</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>⚠️ Kami tidak pernah meminta OTP, password, atau akses akun PayPal Anda.</p>
-  </footer>
+<div class="checkbox">
+<input type="checkbox" id="agree" onchange="check()">
+<label>Saya setuju dengan Syarat & Ketentuan</label>
+</div>
+
+<a id="wa" class="btn">Konfirmasi via WhatsApp</a>
+</div>
+
+<!-- LOG TRANSAKSI -->
+<div class="card reveal">
+<h2>Log Transaksi (Admin)</h2>
+<div id="log"></div>
+</div>
 
 </div>
 
+<!-- POPUP S&K -->
+<div class="popup" id="sk">
+<div class="popup-content">
+<h3>Syarat & Ketentuan</h3>
+<p>
+• Proses manual oleh admin<br>
+• Fee bersifat tetap sesuai nominal<br>
+• Kurs dikunci saat konfirmasi<br>
+• Transaksi tidak dapat dibatalkan
+</p>
+<button onclick="closeSK()">Tutup</button>
+</div>
+</div>
+
 <script>
-const usd = document.getElementById('usd');
-const rate = document.getElementById('rate');
-const result = document.getElementById('result');
+const RATE=16300;
 
-function hitung(){
-  const u = parseFloat(usd.value);
-  const r = parseFloat(rate.value);
-
-  if(!u || u<15){ 
-    result.innerHTML='Minimal transaksi $15.'; 
-    result.classList.add('show'); 
-    return; 
-  }
-
-  let fee = 1;
-  if(u > 100 && u <= 200) fee = 2;
-  if(u > 200) fee = 3;
-
-  const net = u - fee;
-  const idr = net * r;
-
-  result.innerHTML = `
-    <span class="coin">🪙</span>
-    Nominal: $${u.toFixed(2)}<br>
-    Fee: <span class="fee">$${fee.toFixed(2)}</span><br>
-    Diterima: $${net.toFixed(2)}<br>
-    <strong>Estimasi IDR: Rp ${idr.toLocaleString('id-ID')}</strong>
-  `;
-  result.classList.add('show');
+function fee(u){
+if(u<10) return 0.7;
+if(u<50) return 1;
+if(u<100) return 1.7;
+if(u<150) return 2;
+if(u<200) return 2.5;
+return 3;
 }
 
-// Copy hasil
-result.addEventListener('click',()=>{
-  const text = result.innerText.replace(/✖/g,'');
-  navigator.clipboard.writeText(text).then(()=>{ alert('Estimasi IDR disalin ke clipboard!'); });
-});
+function calc(){
+let u=+usd.value;
+if(u<5){res.innerHTML="Minimal transaksi $5";return;}
+let f=fee(u),net=u-f,idr=net*RATE;
+res.innerHTML=`Fee: $${f}<br>Diterima: $${net}<br><b>Rp ${idr.toLocaleString("id-ID")}</b>`;
+wa.href=`https://wa.me/628xxxxxxxxx?text=Tukar PayPal $${u}`;
+}
 
-usd.addEventListener('input',hitung);
-rate.addEventListener('input',hitung);
+function check(){wa.classList.toggle("active",agree.checked)}
+
+wa.onclick=()=>{
+let u=+usd.value;
+if(!agree.checked||u<5)return;
+let f=fee(u),net=u-f,idr=net*RATE;
+let logs=JSON.parse(localStorage.getItem("payrupiah_log"))||[];
+logs.unshift({
+time:new Date().toLocaleString("id-ID"),
+usd:u,fee:f,idr:idr,status:"Pending"
+});
+localStorage.setItem("payrupiah_log",JSON.stringify(logs));
+renderLog();
+}
+
+function renderLog(){
+let logs=JSON.parse(localStorage.getItem("payrupiah_log"))||[];
+let h="<table><tr><th>Tanggal</th><th>USD</th><th>Fee</th><th>IDR</th><th>Status</th></tr>";
+logs.forEach(l=>{
+h+=`<tr><td>${l.time}</td><td>$${l.usd}</td><td>$${l.fee}</td><td>Rp ${l.idr.toLocaleString("id-ID")}</td><td>${l.status}</td></tr>`;
+});
+h+="</table>";
+log.innerHTML=h;
+}
+renderLog();
+
+function dark(){document.body.classList.toggle("dark")}
+function openSK(){sk.style.display="flex"}
+function closeSK(){sk.style.display="none"}
+
+document.querySelectorAll('.reveal').forEach(el=>{
+new IntersectionObserver(e=>{
+if(e[0].isIntersecting)el.classList.add("show")
+}).observe(el)
+});
 </script>
 
 </body>
