@@ -3,279 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayRupiah – Tukar PayPal ke IDR</title>
-
-<!-- Favicon -->
-<link rel="icon" href="favicon.ico">
+<title>PayRupiah — Tukar PayPal ke Rupiah</title>
 
 <!-- SEO -->
-<meta name="description" content="Layanan penukaran saldo PayPal ke Rupiah secara manual, aman, transparan, dan cepat.">
+<meta name="description" content="Layanan tukar saldo PayPal ke Rupiah secara manual, aman, transparan, dan terpercaya.">
+
+<!-- Theme & PWA -->
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+
+<!-- Favicon -->
+<link rel="icon" href="favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
 
 <style>
 :root{
-  --bg:#0f172a;
-  --card:#111827;
-  --soft:#020617;
-  --accent:#3b82f6;
-  --green:#16a34a;
-  --grad:linear-gradient(135deg,#3b82f6,#06b6d4);
+  --bg:#0f172a; --card:#111827; --soft:#020617; --accent:#3b82f6; --green:#16a34a; --text:#e5e7eb; --muted:#9ca3af; --radius:16px;
 }
-*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI}
-body{
-  margin:0;background:var(--bg);color:#e5e7eb;
-  display:flex;justify-content:center;padding:24px
-}
-.container{max-width:960px;width:100%}
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto}
+body{margin:0;background:linear-gradient(180deg,#020617,#0f172a);color:var(--text);display:flex;justify-content:center;}
+.container{max-width:420px;width:100%;padding:20px}
 
-/* HEADER */
-header{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:24px
-}
-.logo{
-  display:flex;align-items:center;gap:10px;
-  font-size:20px;font-weight:700
-}
-.logo svg{width:28px;height:28px}
-.badge{
-  background:var(--green);
-  padding:5px 12px;
-  border-radius:999px;
-  font-size:12px
-}
+/* Header */
+header{background:linear-gradient(135deg,#0ea5e9,#1e40af);border-radius:20px;padding:24px;text-align:center;position:relative;}
+.badge{position:absolute;right:16px;top:16px;background:var(--green);padding:6px 12px;border-radius:999px;font-size:12px;}
+.logo{width:64px;height:64px;border-radius:50%;background:#fff;color:#1e3a8a;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 10px;}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;}
+nav button{background:#ffffff22;border:none;color:#fff;padding:10px;border-radius:12px;cursor:pointer;transition:.2s;}
+nav button:hover{background:#ffffff44;}
 
-/* CARD */
-.card{
-  background:var(--card);
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
-  transition:.3s
-}
-.card:hover{
-  background:linear-gradient(135deg,#111827,#020617)
-}
-h2,h3{margin-top:0}
+/* Card */
+.card{background:var(--card);border-radius:var(--radius);padding:20px;margin-top:20px;}
 
-/* FORM */
-.row{
-  display:flex;gap:16px;flex-wrap:wrap
-}
-.field{flex:1}
-label{
-  font-size:13px;opacity:.75
-}
-input{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border:none;
-  border-radius:12px;
-  background:var(--soft);
-  color:#fff;
-  font-size:15px
-}
-input:disabled{opacity:.7}
+/* Calculator */
+input{width:100%;padding:14px;margin-top:8px;border-radius:12px;border:none;background:#1f2933;color:#fff;font-size:16px;}
+.result{margin-top:12px;font-weight:700;color:#22c55e;}
+button.primary{width:100%;margin-top:16px;padding:14px;border:none;border-radius:14px;background:linear-gradient(135deg,#3b82f6,#1e40af);color:#fff;font-size:16px;cursor:pointer;transition:.2s;}
+button.primary:hover{opacity:.9;}
+.check{display:flex;align-items:center;gap:8px;font-size:14px;margin-top:12px;}
 
-/* BUTTON */
-button{
-  width:100%;
-  margin-top:14px;
-  padding:14px;
-  border:none;
-  border-radius:14px;
-  background:var(--grad);
-  color:#fff;
-  font-size:16px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s
-}
-button:hover{filter:brightness(1.1)}
-button:disabled{opacity:.4;cursor:not-allowed}
+/* Modal */
+.modal{display:none;position:fixed;inset:0;background:#00000088;justify-content:center;align-items:center;}
+.modal .box{background:#020617;padding:20px;border-radius:16px;max-width:360px;}
+.modal button{margin-top:12px;width:100%;padding:10px;border:none;border-radius:10px;}
 
-/* CHECKBOX */
-.checkbox{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  font-size:14px
-}
-
-/* LOG */
-.log{
-  font-size:13px;
-  opacity:.85;
-  padding-left:18px
-}
-
-/* FOOTER */
-footer{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
-  margin-top:30px
-}
-footer div{
-  background:var(--soft);
-  padding:14px;
-  border-radius:14px;
-  text-align:center;
-  font-size:14px
-}
-footer a{
-  color:#93c5fd;
-  text-decoration:none;
-  font-size:13px
-}
-footer a:hover{text-decoration:underline}
-
-.small{
-  font-size:12px;
-  opacity:.65;
-  margin-top:6px
-}
+/* Footer */
+footer{text-align:center;font-size:12px;color:var(--muted);margin:20px 0;}
 </style>
-</head>
 
+</head>
 <body>
 <div class="container">
 
-<!-- HEADER -->
 <header>
-  <div class="logo">
-    <svg viewBox="0 0 24 24" fill="#3b82f6">
-      <path d="M12 2L2 7l10 5 10-5-10-5zm0 7L2 14l10 5 10-5-10-5z"/>
-    </svg>
-    PayRupiah
-  </div>
-  <span class="badge">● Online</span>
+  <div class="badge">● Online</div>
+  <div class="logo">Rp</div>
+  <h1>PayRupiah</h1>
+  <p>Tukar Saldo PayPal ke Rupiah<br><small>Manual • Aman • Transparan</small></p>
+  <nav>
+    <button onclick="openModal('sk')">S&K</button>
+    <button onclick="location.href='faq.html'">FAQ</button>
+    <button onclick="location.href='confirm.html'">Konfirmasi</button>
+  </nav>
 </header>
 
-<!-- KALKULATOR -->
 <div class="card">
-<h3>Kalkulator PayPal → Rupiah</h3>
-
-<div class="row">
-  <div class="field">
-    <label>Nominal PayPal (USD)</label>
-    <input type="number" id="usd" min="5" placeholder="Contoh: 50">
-  </div>
-  <div class="field">
-    <label>Kurs USD (IDR)</label>
-    <input id="rate" value="16300" disabled>
-  </div>
+<h3>Kenapa Memilih Kami?</h3>
+<ul>
+<li>Admin real (bukan bot)</li>
+<li>Proses manual & transparan</li>
+<li>Kurs & fee dikunci saat konfirmasi</li>
+<li>Bukti transfer dicek manual</li>
+<li>Aman & terpercaya</li>
+</ul>
 </div>
 
-<div class="row">
-  <div class="field">
-    <label>Fee (USD)</label>
-    <input id="fee" disabled>
-  </div>
-  <div class="field">
-    <label>Diterima (IDR)</label>
-    <input id="idr" disabled>
-  </div>
-</div>
-
-<div class="checkbox">
-  <input type="checkbox" id="agree">
-  <label>Saya menyetujui <a href="term.html">Syarat & Ketentuan</a></label>
-</div>
-
-<p class="small">* Estimasi. Kurs dikunci saat admin konfirmasi.</p>
-
-<button id="btn" disabled onclick="kirimWA()">Lanjutkan via WhatsApp</button>
-</div>
-
-<!-- LOG -->
 <div class="card">
-<h3>📜 Log Estimasi Terakhir</h3>
-<ul id="log" class="log"></ul>
+<h3>Kalkulator Estimasi</h3>
+<label>Saldo PayPal (USD)</label>
+<input type="number" id="usd" placeholder="Contoh: 50">
+
+<label>Rate USD → IDR</label>
+<input type="number" value="16300" disabled>
+
+<div class="result" id="hasil">Masukkan nominal</div>
+
+<div class="check">
+<input type="checkbox" id="agree">
+<label for="agree">Saya setuju Syarat & Ketentuan</label>
 </div>
 
-<!-- FOOTER -->
+<button class="primary" onclick="hitung()">Hitung & Lanjut WhatsApp</button>
+</div>
+
 <footer>
-  <div>
-    <b>Informasi</b><br>
-    <a href="faq.html">FAQ</a><br>
-    <a href="trust.html">Trust</a>
-  </div>
-  <div>
-    <b>Legal</b><br>
-    <a href="term.html">S&K</a><br>
-    <a href="disclaimer.html">Disclaimer</a>
-  </div>
-  <div>
-    <b>Kontak</b><br>
-    WhatsApp Admin
-  </div>
+© PayRupiah • Proses manual via WhatsApp
 </footer>
 
+<!-- Modal S&K -->
+<div class="modal" id="sk">
+<div class="box">
+<h3>Syarat & Ketentuan</h3>
+<ul>
+<li>Minimal transaksi $5</li>
+<li>Proses manual oleh admin</li>
+<li>Kurs dikunci saat konfirmasi</li>
+<li>Transaksi tidak dapat dibatalkan</li>
+<li>Fee:
+  <ul>
+  <li>$5 – &lt; $10 : $0.7</li>
+  <li>$10 – &lt; $50 : $1</li>
+  <li>$50 – &lt; $100 : $1.7</li>
+  <li>$100 – &lt; $150 : $2</li>
+  <li>$150 – &lt; $200 : $2.5</li>
+  <li>≥ $200 : $3</li>
+  </ul>
+</li>
+</ul>
+<button onclick="closeModal()">Tutup</button>
+</div>
 </div>
 
 <script>
-const usd=document.getElementById("usd"),
-rate=document.getElementById("rate"),
-fee=document.getElementById("fee"),
-idr=document.getElementById("idr"),
-agree=document.getElementById("agree"),
-btn=document.getElementById("btn"),
-log=document.getElementById("log");
-
-function feeCalc(u){
-  if(u>=200) return 3;
-  if(u>=150) return 2.5;
-  if(u>=100) return 2;
-  if(u>=50)  return 1.7;
-  if(u>=10)  return 1;
-  return 0.7;
+function fee(usd){
+  if(usd<10) return 0.7;
+  if(usd<50) return 1;
+  if(usd<100) return 1.7;
+  if(usd<150) return 2;
+  if(usd<200) return 2.5;
+  return 3;
 }
 
-function calc(){
-  let u=parseFloat(usd.value);
-  if(!u || u<5){
-    btn.disabled=true;
-    fee.value="";
-    idr.value="";
-    return;
-  }
-  let f=feeCalc(u);
-  let total=(u-f)*rate.value;
-
-  fee.value=f;
-  idr.value="Rp "+total.toLocaleString("id-ID");
-
-  if(agree.checked) btn.disabled=false;
-
-  addLog(`USD ${u} → Rp ${total.toLocaleString("id-ID")}`);
+function hitung(){
+  const usd=parseFloat(document.getElementById('usd').value);
+  const agree=document.getElementById('agree').checked;
+  if(!usd || usd<5) return alert("Minimal $5");
+  if(!agree) return alert("Setujui S&K terlebih dahulu");
+  const rate=16300;
+  const f=fee(usd);
+  const idr=(usd-f)*rate;
+  document.getElementById('hasil').innerText=`Diterima: Rp ${idr.toLocaleString()} (Fee $${f})`;
+  setTimeout(()=>{window.open(`https://wa.me/62XXXXXXXXXX?text=Halo admin, saya ingin tukar $${usd}`,"_blank");},800);
 }
 
-function addLog(text){
-  let li=document.createElement("li");
-  li.innerText=text;
-  log.prepend(li);
-  if(log.children.length>5) log.removeChild(log.lastChild);
-}
+function openModal(id){document.getElementById(id).style.display="flex"}
+function closeModal(){document.getElementById('sk').style.display="none"}
 
-function kirimWA(){
-  let msg=`Halo Admin PayRupiah 👋
-
-Detail transaksi:
-• USD: $${usd.value}
-• Fee: $${fee.value}
-• Rate: ${rate.value}
-• Estimasi: ${idr.value}
-
-Mohon konfirmasi. Terima kasih.`;
-  window.open("https://wa.me/628XXXXXXXXX?text="+encodeURIComponent(msg));
-}
-
-usd.addEventListener("input",calc);
-agree.addEventListener("change",()=>btn.disabled=!agree.checked);
+if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("sw.js");});}
 </script>
 
 </body>
-      </html>
+                                       </html>
