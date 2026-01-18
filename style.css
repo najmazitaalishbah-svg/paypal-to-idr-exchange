@@ -9,3 +9,104 @@
   width: auto;
   object-fit: contain;
 }
+/* === BACKGROUND PAYPAL === */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.light {
+  background: linear-gradient(135deg, #003087, #0070ba);
+  color: #111;
+}
+
+body.dark {
+  background: #0f172a;
+  color: #f1f5f9;
+}
+
+/* HEADER */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand img {
+  height: 32px;
+}
+
+.online-badge {
+  background: #22c55e;
+  color: white;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+/* TOGGLE */
+.theme-toggle {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* CARD */
+.container {
+  padding: 16px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+body.dark .card {
+  background: #020617;
+}
+
+/* LOGO TENGAH */
+.logo-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.logo-box img {
+  height: 48px;
+}
+
+/* MENU */
+.menu-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.menu-grid a {
+  background: rgba(255,255,255,0.15);
+  padding: 10px;
+  text-align: center;
+  border-radius: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+body.dark .menu-grid a {
+  background: rgba(255,255,255,0.08);
+}
