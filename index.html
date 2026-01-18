@@ -1,122 +1,47 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PayRupiah – Tukar PayPal ke Rupiah</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayRupiah</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon-32.png">
-
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="top-bar">
-  <div class="brand">
-    <img src="logo-payrupiah.png" class="logo-small">
-    <span class="brand-name">PayRupiah</span>
-  </div>
+  <div class="app">
 
-  <div class="right-tools">
-    <span class="badge-online">● Online</span>
-    <button id="toggleTheme">🌙</button>
-  </div>
-</header>
-
-<!-- MAIN -->
-<main class="container">
-
-  <!-- LOGO BESAR -->
-  <div class="logo-wrapper">
-    <div class="logo-circle">
-      <img src="logo-payrupiah.png">
-    </div>
-  </div>
-
-  <!-- KALKULATOR -->
-  <section class="card">
-    <h1>Kalkulator PayPal → Rupiah</h1>
-
-    <div class="grid">
-      <input id="usd" type="number" placeholder="Nominal PayPal (USD)">
-      <input id="rate" type="number" value="16300" disabled>
-      <input id="fee" placeholder="Fee (USD)" disabled>
-      <input id="idr" placeholder="Diterima (IDR)" disabled>
+    <!-- LOGO -->
+    <div class="logo-wrapper">
+      <img src="logo.png" alt="PayRupiah Logo">
     </div>
 
-    <label class="agree">
-      <input type="checkbox" id="agree">
-      Saya menyetujui <a href="term.html">Syarat & Ketentuan</a>
-    </label>
+    <!-- CARD -->
+    <div class="card">
+      <h1>Kalkulator PayPal → Rupiah</h1>
 
-    <button id="waBtn" disabled>
-      Lanjutkan via WhatsApp
-    </button>
+      <input type="number" placeholder="Nominal PayPal (USD)">
 
-    <!-- INFO -->
-    <div class="info-box">
-      <p><b>Fee layanan:</b></p>
-      <ul>
-        <li>5 – 9 USD → fee 0.7 USD</li>
-        <li>10 – 49 USD → fee 1 USD</li>
-        <li>50 – 99 USD → fee 1.7 USD</li>
-        <li>100 – 149 USD → fee 2 USD</li>
-        <li>150 – 199 USD → fee 2.5 USD</li>
-        <li>≥ 200 USD → fee 3 USD</li>
-      </ul>
-      <p>📞 Admin WhatsApp: <b>08xxxxxxxxxx</b></p>
+      <label>
+        <input type="checkbox">
+        Saya menyetujui Syarat & Ketentuan
+      </label>
+
+      <div class="fee-info">
+        <strong>Fee layanan:</strong><br>
+        • 5–9 USD = 0.7 USD<br>
+        • 10–49 USD = 1 USD<br>
+        • 50–99 USD = 1.7 USD<br>
+        • 100–149 USD = 2 USD<br>
+        • ≥ 200 USD = 5 USD
+      </div>
+
+      <div class="contact">
+        Admin WhatsApp: 08xxxxxxxxxx
+      </div>
     </div>
-  </section>
 
-  <!-- MENU -->
-  <section class="menu-grid">
-    <a href="faq.html">FAQ</a>
-    <a href="term.html">S&K</a>
-    <a href="disclaimer.html">Disclaimer</a>
-    <a href="trust.html">Trust</a>
-    <a href="confirm.html">Konfirmasi</a>
-  </section>
+  </div>
 
-</main>
-
-<script>
-const usd = document.getElementById('usd');
-const fee = document.getElementById('fee');
-const idr = document.getElementById('idr');
-const agree = document.getElementById('agree');
-const waBtn = document.getElementById('waBtn');
-const rate = 16300;
-
-usd.addEventListener('input', () => {
-  const v = parseFloat(usd.value);
-  let f = 0;
-
-  if(v >= 200) f = 3;
-  else if(v >= 150) f = 2.5;
-  else if(v >= 100) f = 2;
-  else if(v >= 50) f = 1.7;
-  else if(v >= 10) f = 1;
-  else if(v >= 5) f = 0.7;
-
-  fee.value = f;
-  idr.value = (v - f) * rate;
-});
-
-agree.addEventListener('change',()=>{
-  waBtn.disabled = !agree.checked;
-});
-
-waBtn.addEventListener('click',()=>{
-  const msg = `Halo Admin PayRupiah,%0ASaya ingin menukar saldo PayPal.%0ANominal: ${usd.value} USD`;
-  window.open(`https://wa.me/62XXXXXXXXXX?text=${msg}`);
-});
-</script>
-
-  <script>
-document.getElementById('toggleTheme').onclick=()=>{
-  document.body.classList.toggle('dark')
-}
-  </script>
 </body>
 </html>
