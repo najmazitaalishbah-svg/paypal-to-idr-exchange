@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PayRupiah</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
 
   <!-- Favicon -->
   <link rel="icon" href="favicon-32.png">
@@ -24,27 +24,30 @@
       <span class="online-badge">Online</span>
     </div>
 
-    <!-- Dark / Light Toggle -->
-    <button id="themeToggle" class="theme-toggle">
-      🌙
-    </button>
+    <button id="themeToggle" class="theme-toggle">🌙</button>
   </header>
 
   <!-- MAIN -->
   <main class="container">
 
+    <!-- CARD KALKULATOR -->
     <section class="card">
-      <!-- Logo Tengah -->
+
+      <!-- LOGO TENGAH -->
       <div class="logo-box">
         <img src="logo-payrupiah.png" alt="PayRupiah Logo">
       </div>
 
       <h2 class="card-title">Kalkulator PayPal → Rupiah</h2>
 
-      <!-- KALKULATOR (punya kamu, tidak diubah) -->
+      <!-- =========================
+           AREA KALKULATOR LAMA
+           (TIDAK DIUBAH)
+           ========================= -->
       <div class="calculator">
-        <!-- isi kalkulator kamu tetap di sini -->
+        <!-- PASTE KODE KALKULATOR KAMU DI SINI -->
       </div>
+
     </section>
 
     <!-- MENU -->
@@ -58,17 +61,17 @@
 
   </main>
 
-  <!-- JS TOGGLE -->
+  <!-- DARK / LIGHT TOGGLE -->
   <script>
     const toggle = document.getElementById("themeToggle");
-    const body = document.body;
 
     toggle.addEventListener("click", () => {
-      body.classList.toggle("dark");
-      body.classList.toggle("light");
-      toggle.textContent = body.classList.contains("dark") ? "☀️" : "🌙";
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+      toggle.textContent =
+        document.body.classList.contains("dark") ? "☀️" : "🌙";
     });
   </script>
 
 </body>
-</html>
+  </html>
