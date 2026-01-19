@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Konfirmasi WhatsApp</title>
+<title>Konfirmasi</title>
 
 <style>
 body{
   margin:0;
+  font-family:Segoe UI;
   background:linear-gradient(135deg,#e3f2fd,#f5faff);
-  font-family:'Segoe UI',sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -19,27 +19,24 @@ body{
 .box{
   background:#fff;
   padding:30px;
-  max-width:420px;
   width:100%;
+  max-width:420px;
   border-radius:20px;
-  text-align:center;
   box-shadow:0 25px 45px rgba(26,115,232,.25);
-  animation:fade .8s ease;
+  animation:slide .7s ease;
 }
 
-@keyframes fade{
-  from{opacity:0; transform:translateY(30px)}
+@keyframes slide{
+  from{opacity:0; transform:translateY(40px)}
   to{opacity:1; transform:translateY(0)}
 }
 
-h2{
-  color:#1a73e8;
-}
-
-p{
+h2{color:#1a73e8;}
+.info{
   font-size:14px;
-  color:#555;
+  margin:12px 0;
 }
+span{font-weight:600}
 
 button{
   margin-top:18px;
@@ -47,15 +44,10 @@ button{
   padding:14px;
   border:none;
   border-radius:14px;
-  background:linear-gradient(135deg,#1a73e8,#4285f4);
+  background:#1a73e8;
   color:#fff;
   font-size:15px;
   cursor:pointer;
-  transition:.3s;
-}
-
-button:hover{
-  transform:translateY(-2px);
 }
 </style>
 </head>
@@ -63,16 +55,23 @@ button:hover{
 <body>
 
 <div class="box">
-  <h2>Konfirmasi WhatsApp</h2>
-  <p>
-    Setelah mengirim <b>bukti transfer Rupiah</b> melalui WhatsApp,
-    silakan klik tombol di bawah ini.
-  </p>
+  <h2>Langkah 2 dari 3</h2>
 
-  <button onclick="lanjut()">Saya sudah kirim bukti di WhatsApp</button>
+  <div class="info">ID Transaksi: <span id="trx"></span></div>
+  <div class="info">USD Diterima: <span id="net"></span></div>
+  <div class="info">Total Rupiah: <span id="idr"></span></div>
+
+  <p>Setelah mengirim bukti transfer Rupiah di WhatsApp, klik tombol di bawah.</p>
+
+  <button onclick="lanjut()">Saya Sudah Kirim Bukti</button>
 </div>
 
 <script>
+document.getElementById("trx").innerText = localStorage.getItem("trx");
+document.getElementById("net").innerText = "$" + localStorage.getItem("net");
+document.getElementById("idr").innerText =
+  "Rp " + Number(localStorage.getItem("idr")).toLocaleString("id-ID");
+
 function lanjut(){
   window.location.href = "success.html";
 }
