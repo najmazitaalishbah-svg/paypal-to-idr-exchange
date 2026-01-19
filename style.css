@@ -144,7 +144,7 @@ button#waBtn:disabled {
   width: 100px;                /* ukuran logo */
   border-radius: 50%;          /* logo bulat */
   padding: 5px;                /* jarak logo ke border */
-  background: linear-gradient(135deg, #003087, #009cde); /* gradien biru PayPal */
+  background: linear-gradient(135deg, #003087, #009cde); /* gradien biru ala PayPal */
   border: 4px solid #fff;      /* border putih luar */
   box-sizing: border-box;
 }
