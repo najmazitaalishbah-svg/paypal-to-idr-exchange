@@ -1,17 +1,22 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: 'Segoe UI', system-ui, sans-serif;
 }
 
+/* ===== BACKGROUND PAYPAL ===== */
 body {
-  background: linear-gradient(135deg, #009cde, #003087);
   min-height: 100vh;
-  padding: 20px;
-  color: #1a1a1a;
 }
 
+.app-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #009cde, #003087);
+  padding: 24px;
+}
+
+/* ===== LAYOUT ===== */
 .container {
   max-width: 420px;
   margin: auto;
@@ -32,11 +37,11 @@ body {
 }
 
 .brand img {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #fff;
-  padding: 4px;
+  padding: 5px;
 }
 
 .brand span {
@@ -48,24 +53,26 @@ body {
 .badge-online {
   background: #22c55e;
   color: #fff;
-  font-size: 12px;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 20px;
+  font-size: 12px;
 }
 
 /* ===== CARD ===== */
 .card {
   background: #ffffff;
-  border-radius: 18px;
+  border-radius: 20px;
   padding: 20px;
-  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+  box-shadow: 0 15px 35px rgba(0,0,0,.18);
+  width: 100%;
+  overflow: hidden; /* INI KUNCI */
 }
 
 .card h1 {
   font-size: 18px;
-  margin-bottom: 16px;
   text-align: center;
   color: #003087;
+  margin-bottom: 16px;
 }
 
 /* ===== FORM ===== */
@@ -83,6 +90,7 @@ body {
 
 .form-group input {
   width: 100%;
+  max-width: 100%; /* ANTI KELUAR */
   padding: 12px;
   border-radius: 12px;
   border: 1px solid #dcdcdc;
@@ -91,16 +99,15 @@ body {
 
 .form-group input:disabled {
   background: #f2f4f7;
-  color: #555;
 }
 
 /* ===== CHECKBOX ===== */
 .checkbox {
   display: flex;
-  align-items: center;
   gap: 8px;
-  margin-top: 14px;
+  align-items: center;
   font-size: 13px;
+  margin-top: 14px;
 }
 
 .checkbox a {
@@ -113,27 +120,24 @@ body {
   width: 100%;
   margin-top: 16px;
   padding: 14px;
-  background: linear-gradient(135deg, #009cde, #0070ba);
   border: none;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
   border-radius: 14px;
+  background: linear-gradient(135deg, #009cde, #0070ba);
+  color: #fff;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .button:hover {
-  transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0,112,186,.35);
 }
 
 /* ===== INFO ===== */
 .info {
+  text-align: center;
   font-size: 12px;
   color: #666;
   margin-top: 10px;
-  text-align: center;
 }
 
 /* ===== MENU ===== */
@@ -147,4 +151,4 @@ body {
   font-size: 12px;
   color: #e6f4ff;
   text-decoration: none;
-}
+  }
