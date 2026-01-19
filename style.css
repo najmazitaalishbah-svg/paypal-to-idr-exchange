@@ -152,3 +152,8 @@ body {
   color: #e6f4ff;
   text-decoration: none;
   }
+.warning-text {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 6px;
+  }
