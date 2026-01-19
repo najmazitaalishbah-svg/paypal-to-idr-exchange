@@ -180,16 +180,22 @@ button#waBtn:disabled {
   margin-bottom: 5px; /* dikurangi supaya logo lebih dekat ke judul */
 }
 
+/* ===== Logo ===== */
+.logo {
+  text-align: center;
+  margin-bottom: 0; /* hilangkan jarak ke judul */
+}
+
 .logo img {
   width: 220px;      /* ukuran logo besar */
-  border-radius: 0;  /* tetap tidak bulat */
+  border-radius: 0;  /* tidak bulat */
   padding: 0;
   background: none;
   border: none;
   box-sizing: border-box;
 }
 
-/* ===== Keterangan / Judul di atas menu (diperkecil) ===== */
+/* ===== Keterangan / Judul ===== */
 .logo-title {
   text-align: center;
   margin-top: 0;       /* rapat ke logo */
@@ -206,5 +212,5 @@ button#waBtn:disabled {
 .logo-title p {
   font-size: 0.9rem;   /* ukuran deskripsi lebih kecil */
   color: #333;
-  margin: 4px 0 0 0;
+  margin: 2px 0 0 0;   /* jarak atas dikurangi */
 }
