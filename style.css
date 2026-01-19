@@ -1,159 +1,102 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', system-ui, sans-serif;
-}
+/* Reset dasar */
+* { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
 
-/* ===== BACKGROUND PAYPAL ===== */
 body {
-  min-height: 100vh;
+  background: #87ceeb; /* Sky blue */
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
 }
 
-.app-bg {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #009cde, #003087);
-  padding: 24px;
-}
-
-/* ===== LAYOUT ===== */
 .container {
-  max-width: 420px;
-  margin: auto;
+  width:100%;
+  max-width:400px;
+  padding:20px;
 }
 
-/* ===== HEADER ===== */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+.logo {
+  text-align:center;
+  margin-bottom:20px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.logo img {
+  width:100px;
+  border-radius:50%;
 }
 
-.brand img {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #fff;
-  padding: 5px;
-}
-
-.brand span {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.badge-online {
-  background: #22c55e;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-
-/* ===== CARD ===== */
 .card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.18);
-  width: 100%;
-  overflow: hidden; /* INI KUNCI */
+  background:#fff;
+  border-radius:10px;
+  padding:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
-.card h1 {
-  font-size: 18px;
-  text-align: center;
-  color: #003087;
-  margin-bottom: 16px;
+h1 {
+  text-align:center;
+  margin-bottom:20px;
+  font-size:1.5rem;
 }
 
-/* ===== FORM ===== */
 .form-grid {
-  display: grid;
-  gap: 12px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
 }
 
 .form-group label {
-  font-size: 13px;
-  color: #444;
-  margin-bottom: 4px;
-  display: block;
+  display:block;
+  margin-bottom:5px;
+  font-weight:bold;
 }
 
 .form-group input {
-  width: 100%;
-  max-width: 100%; /* ANTI KELUAR */
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid #dcdcdc;
-  font-size: 14px;
+  width:100%;
+  padding:10px;
+  border-radius:5px;
+  border:1px solid #ccc;
+  font-size:1rem;
 }
 
-.form-group input:disabled {
-  background: #f2f4f7;
+.note-text {
+  font-weight:bold;
+  margin-top:4px;
+  font-size:0.9rem;
+  color:#28a745; /* hijau */
 }
 
-/* ===== CHECKBOX ===== */
+.warning-text {
+  font-size:0.85rem;
+}
+
 .checkbox {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  font-size: 13px;
-  margin-top: 14px;
+  margin:15px 0;
 }
 
-.checkbox a {
-  color: #009cde;
-  text-decoration: none;
-}
-
-/* ===== BUTTON ===== */
 .button {
-  width: 100%;
-  margin-top: 16px;
-  padding: 14px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #009cde, #0070ba);
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
+  width:100%;
+  padding:12px;
+  background: linear-gradient(90deg,#0070ba,#00c6ff);
+  border:none;
+  color:#fff;
+  font-size:1rem;
+  border-radius:5px;
+  cursor:pointer;
+  transition:all 0.3s ease;
 }
 
 .button:hover {
-  box-shadow: 0 10px 20px rgba(0,112,186,.35);
+  background: linear-gradient(90deg,#00c6ff,#0070ba);
 }
 
-/* ===== INFO ===== */
+.button:disabled {
+  opacity:0.6;
+  cursor:not-allowed;
+}
+
 .info {
-  text-align: center;
-  font-size: 12px;
-  color: #666;
-  margin-top: 10px;
+  margin-top:10px;
+  font-size:0.85rem;
+  text-align:center;
+  color:#555;
 }
-
-/* ===== MENU ===== */
-.menu {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 18px;
-}
-
-.menu a {
-  font-size: 12px;
-  color: #e6f4ff;
-  text-decoration: none;
-  }
-.warning-text {
-  color: #dc2626;
-  font-size: 12px;
-  margin-top: 6px;
-  }
