@@ -64,6 +64,6 @@ Saya ingin melakukan penukaran saldo PayPal:
 Mohon info langkah selanjutnya 🙏
   `.trim();
 
-  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
+  const url = `https://wa.me/${6281119566667}?text=${encodeURIComponent(message)}`;
   window.open(url, "_blank");
 });
