@@ -67,7 +67,7 @@ function kirimWA(){
 
   const rate = 16500;
 
-  function hitungFee(u){
+  function fee(u){
     if (u < 10) return 0.7;
     if (u < 50) return 1;
     if (u < 100) return 1.7;
@@ -76,39 +76,35 @@ function kirimWA(){
     return 3;
   }
 
-  const fee = hitungFee(usd);
-  const netUsd = (usd - fee).toFixed(2);
-  const rupiah = Math.round(netUsd * rate);
+  const f = fee(usd);
+  const net = (usd - f).toFixed(2);
+  const rupiah = Math.round(net * rate);
+  const trx = "PR-" + Date.now();
 
-  const pesan =
-`Halo Admin PayRupiah,
-Saya ingin menukarkan saldo PayPal.
+  // SIMPAN DATA
+  localStorage.setItem("trx", trx);
+  localStorage.setItem("usd", usd);
+  localStorage.setItem("fee", f);
+  localStorage.setItem("net", net);
+  localStorage.setItem("idr", rupiah);
 
-Nominal awal : $${usd}
-Fee          : $${fee}
-USD diterima : $${netUsd}
-Total Rupiah : Rp ${rupiah.toLocaleString("id-ID")}
+  const text =
+`Halo Admin PayRupiah
+ID Transaksi: ${trx}
 
-Saya sudah transfer Rupiah dan akan mengirim bukti transfer.`;
+Nominal USD : $${usd}
+Fee         : $${f}
+USD Diterima: $${net}
+Rupiah      : Rp ${rupiah.toLocaleString("id-ID")}
 
-  // SIMPAN STATUS
-  localStorage.setItem("wa_confirmed", "yes");
+Saya kirim bukti transfer Rupiah.`;
 
-  const waUrl = "https://wa.me/6281119566667?text=" + encodeURIComponent(pesan);
-  window.open(waUrl, "_blank");
+  const wa = "https://wa.me/6281119566667?text=" + encodeURIComponent(text);
+
+  window.open(wa, "_blank");
+  window.location.href = "confirm.html";
 }
 </script>
-  
-  <script>
-document.addEventListener("visibilitychange", function () {
-  if (
-    document.visibilityState === "visible" &&
-    localStorage.getItem("wa_confirmed") === "yes"
-  ) {
-    localStorage.removeItem("wa_confirmed");
-    window.location.href = "success.html";
-  }
 
-   </script>
 </body>
   </html>
