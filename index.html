@@ -1,110 +1,126 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PayRupiah | Kalkulator PayPal ke Rupiah</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Kalkulator PayPal ke Rupiah dengan estimasi fee dan konfirmasi via WhatsApp.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PayRupiah</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 
-  <!-- PWA (nanti kita aktifkan) -->
-  <!-- <link rel="manifest" href="manifest.json"> -->
+  <!-- Manifest (optional kalau sudah ada) -->
+  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header class="header">
-    <div class="header-left">
-      <div class="logo-circle">
-        <!-- logo png nanti -->
-        <img src="logo.png" alt="PayRupiah Logo">
-      </div>
-      <span class="brand-name">PayRupiah</span>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <img src="logo-payrupiah.png" alt="PayRupiah">
+      <span>PayRupiah</span>
+      <div class="badge-online">Online</div>
     </div>
 
-    <div class="header-right">
-      <span class="status online">● Online</span>
-      <button class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
-    </div>
-  </header>
+    <!-- Dark Mode Toggle -->
+    <div class="toggle" id="toggleMode">🌙</div>
+  </div>
 
-  <!-- ================= MAIN ================= -->
-  <main class="container">
+  <!-- CARD -->
+  <div class="card">
+    <h1>Kalkulator Pembayaran</h1>
 
-    <!-- BRAND LOGO -->
-    <section class="brand-center">
-      <img src="logo.png" alt="PayRupiah" class="brand-logo">
-    </section>
+    <div class="form-grid">
 
-    <!-- ================= KALKULATOR ================= -->
-    <section class="card">
-      <h1>Kalkulator PayPal → Rupiah</h1>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Nominal PayPal (USD)</label>
-          <input type="number" placeholder="Contoh: 50">
-        </div>
-
-        <div class="form-group">
-          <label>Kurs USD (IDR)</label>
-          <input type="number" value="16300">
-        </div>
-
-        <div class="form-group">
-          <label>Fee (USD)</label>
-          <input type="text" disabled>
-        </div>
-
-        <div class="form-group">
-          <label>Diterima (IDR)</label>
-          <input type="text" disabled>
-        </div>
+      <div class="form-group">
+        <label>Jumlah USD</label>
+        <input type="number" id="usd" placeholder="Contoh: 10">
       </div>
 
-      <label class="checkbox">
-        <input type="checkbox">
-        Saya menyetujui <a href="term.html">Syarat & Ketentuan</a>
-      </label>
+      <div class="form-group">
+        <label>Kurs (Terkunci)</label>
+        <input type="text" value="16.500" disabled>
+      </div>
 
-      <p class="note">
-        * Estimasi. Kurs dikunci saat admin konfirmasi.
-      </p>
+      <div class="form-group full">
+        <label>Total Rupiah</label>
+        <input type="text" id="idr" placeholder="Rp 0" disabled>
+      </div>
 
-      <button class="btn-primary" disabled>
-        Lanjutkan via WhatsApp
-      </button>
-    </section>
+    </div>
 
-    <!-- ================= INFO TAMBAHAN ================= -->
-    <section class="info">
-      <p><strong>Fee Layanan:</strong></p>
-      <ul>
-        <li>$5 – $19 → $0,7</li>
-        <li>$20 – $50 → $1</li>
-        <li>$51– $100 → $1,5</li>
-        <Ii>$101 - → $1,5</Ii>
-      </ul>
+    <div class="checkbox">
+      <input type="checkbox" id="agree">
+      <span>Saya setuju dengan <a href="syarat.html">syarat & ketentuan</a></span>
+    </div>
 
-      <p class="contact">
-        📞 Admin WhatsApp: <strong>081119566667</strong>
-      </p>
-    </section>
+    <button class="button" id="btnWa">Kirim via WhatsApp</button>
 
-  </main>
+    <div class="info">
+      Kurs bersifat tetap dan tidak dapat diubah.
+    </div>
+  </div>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <a href="faq.html">FAQ</a>
-    <a href="trust.html">Trust</a>
-    <a href="term.html">S&K</a>
-    <a href="disclaimer.html">Disclaimer</a>
-  </footer>
+  <!-- MENU -->
+  <div class="menu">
+    <a href="#">Home</a>
+    <a href="#">Riwayat</a>
+    <a href="#">Bantuan</a>
+  </div>
+
+</div>
+
+<!-- ======================
+     SCRIPT
+====================== -->
+<script>
+  const KURS = 16500; // KURS DIKUNCI
+
+  const usdInput = document.getElementById("usd");
+  const idrInput = document.getElementById("idr");
+  const agree = document.getElementById("agree");
+  const btnWa = document.getElementById("btnWa");
+
+  usdInput.addEventListener("input", () => {
+    const usd = parseFloat(usdInput.value) || 0;
+    const total = usd * KURS;
+    idrInput.value = "Rp " + total.toLocaleString("id-ID");
+  });
+
+  agree.addEventListener("change", () => {
+    btnWa.classList.toggle("active", agree.checked);
+  });
+
+  btnWa.addEventListener("click", () => {
+    if (!agree.checked) return;
+
+    const usd = usdInput.value;
+    const idr = idrInput.value;
+
+    const pesan = `
+Halo Admin PayRupiah 👋
+Saya ingin melakukan pembayaran:
+
+USD : $${usd}
+Total : ${idr}
+
+Terima kasih
+    `.trim();
+
+    const wa = "6281234567890"; // GANTI NOMOR WA
+    const url = `https://wa.me/${wa}?text=${encodeURIComponent(pesan)}`;
+    window.open(url, "_blank");
+  });
+
+  // Dark Mode
+  const toggle = document.getElementById("toggleMode");
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    toggle.textContent =
+      document.body.classList.contains("dark") ? "☀️" : "🌙";
+  });
+</script>
 
 </body>
-  </html>
+        </html>
