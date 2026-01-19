@@ -26,38 +26,25 @@
       </div>
 
       <!-- CARD -->
-      <div class="card">
-        <h1>Kalkulator Transaksi</h1>
+      <div class="form-grid">
+  <div class="form-group">
+    <label>Nominal (USD)</label>
+    <input type="number" id="usd" placeholder="Contoh: 10" min="0" step="0.01">
+    <small id="warning" class="warning-text" style="display:none;">
+      Minimal penukaran adalah $5
+    </small>
+  </div>
 
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Nominal (USD)</label>
-            <input type="number" placeholder="Contoh: 10">
-          </div>
+  <div class="form-group">
+    <label>Kurs USD (Tetap)</label>
+    <input type="text" value="1 USD = 16.300 IDR" disabled>
+  </div>
 
-          <div class="form-group">
-            <label>Kurs USD (Tetap)</label>
-            <input type="text" value="1 USD = 16.300 IDR" disabled>
-          </div>
-
-          <div class="form-group">
-            <label>Total Rupiah</label>
-            <input type="text" disabled>
-          </div>
-        </div>
-
-        <div class="checkbox">
-          <input type="checkbox">
-          <span>Saya setuju <a href="term.html">S&K</a></span>
-        </div>
-
-        <button class="button">Lanjut WhatsApp</button>
-
-        <div class="info">
-          Fee dihitung otomatis sesuai nominal transaksi
-        </div>
-      </div>
-
+  <div class="form-group">
+    <label>Total Rupiah</label>
+    <input type="text" id="idr" disabled>
+  </div>
+</div>
       <!-- MENU -->
       <div class="menu">
         <a href="faq.html">FAQ</a>
