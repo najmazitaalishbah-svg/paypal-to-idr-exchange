@@ -101,18 +101,21 @@ h1 {
   color:#555;
 }
 
+/* ==========================
+   Menu Box Horizontal
+   ========================== */
 .menu {
   display: flex;
-  justify-content: center; /* sejajar horizontal */
-  gap: 15px;               /* jarak antar menu */
+  justify-content: center;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
 .menu a {
   display: inline-block;
   padding: 10px 18px;
-  background: #f1f9ff;      /* warna dasar kotak */
-  border: 2px solid #0070ba; /* garis biru */
+  background: #f1f9ff;
+  border: 2px solid #0070ba;
   border-radius: 8px;
   text-decoration: none;
   color: #0070ba;
@@ -123,11 +126,11 @@ h1 {
 .menu a:hover {
   background: #0070ba;
   color: #fff;
-  transform: translateY(-2px); /* animasi hover */
+  transform: translateY(-2px);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .menu a.active {
   background: #0070ba;
   color: #fff;
-  }
+}
