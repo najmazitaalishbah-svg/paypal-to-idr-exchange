@@ -214,3 +214,9 @@ button#waBtn:disabled {
   color: #333;
   margin: 2px 0 0 0;   /* jarak atas dikurangi */
 }
+.kurs-info {
+  font-size: 0.9rem;
+  color: #0070ba; /* warna biru */
+  margin-bottom: 10px;
+  font-weight: bold;
+}
