@@ -1,16 +1,15 @@
 const usdInput = document.getElementById("usd");
-const idrInput = document.getElementById("idr");
 const feeInput = document.getElementById("fee");
+const idrInput = document.getElementById("idr");
 const warningText = document.getElementById("warning");
 const waBtn = document.getElementById("waBtn");
 
-const RATE = 16300;                  // Kurs USD → IDR
+const RATE = 16500;                  // Kurs USD baru
 const WA_NUMBER = "6281234567890";   // Ganti nomor admin
 
 usdInput.addEventListener("input", () => {
-  const usd = parseFloat(usdInput.value);
-
-  waBtn.disabled = true; // Tombol WA default mati
+  let usd = parseFloat(usdInput.value);
+  waBtn.disabled = true;
 
   if (!usd || usd <= 0) {
     idrInput.value = "";
@@ -19,7 +18,6 @@ usdInput.addEventListener("input", () => {
     return;
   }
 
-  // Warning minimal USD 5
   if (usd < 5) {
     warningText.style.display = "block";
     idrInput.value = "—";
@@ -29,7 +27,7 @@ usdInput.addEventListener("input", () => {
 
   warningText.style.display = "none";
 
-  // HITUNG FEE OTOMATIS
+  // Hitung fee otomatis sesuai nominal
   let feeUSD = 0;
   if (usd < 10) feeUSD = 1;
   else if (usd <= 50) feeUSD = 1.7;
@@ -40,20 +38,21 @@ usdInput.addEventListener("input", () => {
 
   feeInput.value = `$${feeUSD}`;
 
-  // TOTAL IDR = (USD + Fee) * RATE
+  // Total Rupiah = (USD + Fee) * RATE
   const totalIDR = (usd + feeUSD) * RATE;
   idrInput.value = "Rp " + totalIDR.toLocaleString("id-ID");
 
-  waBtn.disabled = false; // Tombol WA aktif
+  // Tombol WhatsApp aktif
+  waBtn.disabled = false;
 });
 
 // Tombol WhatsApp
 waBtn.addEventListener("click", () => {
-  const usd = parseFloat(usdInput.value);
+  let usd = parseFloat(usdInput.value);
   if (usd < 5) return;
 
-  const feeUSD = parseFloat(feeInput.value.replace("$","")) || 0;
-  const totalIDR = (usd + feeUSD) * RATE;
+  let feeUSD = parseFloat(feeInput.value.replace("$","")) || 0;
+  let totalIDR = (usd + feeUSD) * RATE;
 
   const message = `
 Halo Admin PayRupiah 👋
