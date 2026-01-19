@@ -55,5 +55,51 @@
 </div>
 
 <script src="script.js"></script>
+
+  <script>
+function kirimWA(){
+  const usd = document.getElementById("usd").value;
+
+  if(!usd || usd < 5){
+    alert("Minimal penukaran 5 USD");
+    return;
+  }
+
+  const rate = 16500;
+
+  function hitungFee(u){
+    if (u < 10) return 0.7;
+    if (u < 50) return 1;
+    if (u < 100) return 1.7;
+    if (u < 150) return 2;
+    if (u < 200) return 2.5;
+    return 3;
+  }
+
+  const fee = hitungFee(usd);
+  const netUsd = (usd - fee).toFixed(2);
+  const rupiah = Math.round(netUsd * rate);
+
+  const text =
+`Halo Admin PayRupiah,
+Saya ingin menukarkan saldo PayPal.
+
+Nominal awal : $${usd}
+Fee          : $${fee}
+USD diterima : $${netUsd}
+Total Rupiah : Rp ${rupiah.toLocaleString("id-ID")}
+
+Saya sudah transfer Rupiah dan akan mengirim bukti transfer.`;
+
+  const wa = "https://wa.me/628XXXXXXXXXX?text=" + encodeURIComponent(text);
+
+  window.open(wa, "_blank");
+
+  // AUTO REDIRECT KE HALAMAN INSTRUKSI
+  setTimeout(() => {
+    window.location.href = "success.html";
+  }, 800);
+}
+      </script>
 </body>
   </html>
