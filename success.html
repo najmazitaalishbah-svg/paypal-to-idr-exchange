@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instruksi Transaksi</title>
+<title>Transaksi Berhasil</title>
 
 <style>
 body{
   margin:0;
-  background:linear-gradient(135deg,#e3f2fd,#f5faff);
-  font-family:'Segoe UI',sans-serif;
+  font-family:Segoe UI;
+  background:linear-gradient(135deg,#e8f5e9,#ffffff);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -19,66 +19,28 @@ body{
 .box{
   background:#fff;
   padding:30px;
-  max-width:420px;
   width:100%;
-  border-radius:20px;
+  max-width:420px;
+  border-radius:22px;
+  box-shadow:0 25px 45px rgba(46,125,50,.25);
   text-align:center;
-  box-shadow:0 25px 45px rgba(26,115,232,.25);
-  animation:fade .8s ease;
+  animation:fade .7s ease;
 }
 
 @keyframes fade{
-  from{opacity:0; transform:translateY(30px)}
-  to{opacity:1; transform:translateY(0)}
+  from{opacity:0; transform:scale(.95)}
+  to{opacity:1; transform:scale(1)}
 }
 
-h2{
-  color:#1a73e8;
-  margin-bottom:6px;
-}
+h2{color:#2e7d32;}
+p{font-size:14px;}
 
-.status{
-  font-size:14px;
-  color:#555;
-  margin-bottom:20px;
-}
-
-.steps{
-  text-align:left;
-  font-size:14px;
-}
-
-.step{
-  opacity:0;
-  transform:translateX(-10px);
-  margin:10px 0;
-  transition:.4s;
-}
-
-.step.active{
-  opacity:1;
-  transform:translateX(0);
-}
-
-.check{
-  color:#2e7d32;
-  font-weight:bold;
-  margin-right:6px;
-}
-
-.timer{
-  margin-top:18px;
-  font-size:14px;
-  color:#1a73e8;
+.highlight{
+  margin-top:15px;
+  padding:14px;
+  background:#e8f5e9;
+  border-radius:12px;
   font-weight:600;
-}
-
-.final{
-  display:none;
-  margin-top:20px;
-  color:#2e7d32;
-  font-weight:700;
-  font-size:15px;
 }
 </style>
 </head>
@@ -86,57 +48,25 @@ h2{
 <body>
 
 <div class="box">
-  <h2>Proses Transaksi</h2>
-  <div class="status" id="statusText">
-    ⏳ Menunggu bukti transfer dari Anda
+  <h2>Langkah 3 dari 3</h2>
+  <p>Silakan kirim saldo PayPal sesuai nominal berikut:</p>
+
+  <div class="highlight">
+    USD: $<span id="net"></span>
   </div>
 
-  <div class="steps">
-    <div class="step" id="s1">📌 Kirim bukti transfer Rupiah via WhatsApp</div>
-    <div class="step" id="s2">📌 Admin melakukan pengecekan</div>
-    <div class="step" id="s3">📌 Kirim saldo PayPal ke email tujuan</div>
-  </div>
+  <p>
+    Kirim ke email PayPal admin yang telah diberikan.
+    Setelah saldo diterima, Rupiah akan segera dikirim.
+  </p>
 
-  <div class="timer" id="timer"></div>
-
-  <div class="final" id="finalText">
-    ✅ Silakan kirim saldo PayPal sekarang
-  </div>
+  <small>ID Transaksi: <span id="trx"></span></small>
 </div>
 
 <script>
-const steps = [
-  document.getElementById("s1"),
-  document.getElementById("s2"),
-  document.getElementById("s3")
-];
-
-let count = 10; // detik simulasi
-const timerEl = document.getElementById("timer");
-const statusText = document.getElementById("statusText");
-const finalText = document.getElementById("finalText");
-
-// TAMPILKAN STEP SATU PER SATU
-steps.forEach((el, i) => {
-  setTimeout(() => {
-    el.classList.add("active");
-    el.innerHTML = `<span class="check">✔</span>` + el.innerText;
-  }, (i + 1) * 1000);
-});
-
-// COUNTDOWN
-const interval = setInterval(() => {
-  timerEl.innerText = `⏱ Menunggu konfirmasi (${count}s)`;
-  count--;
-
-  if (count < 0) {
-    clearInterval(interval);
-    timerEl.innerText = "";
-    statusText.innerText = "Status: Dikonfirmasi";
-    finalText.style.display = "block";
-  }
-}, 1000);
+document.getElementById("net").innerText = localStorage.getItem("net");
+document.getElementById("trx").innerText = localStorage.getItem("trx");
 </script>
 
 </body>
-  </html>
+</html>
