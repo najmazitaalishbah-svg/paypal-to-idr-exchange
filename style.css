@@ -133,3 +133,14 @@ button#waBtn:disabled {
   list-style-type: disc;
   margin-left: 20px;
 }
+/* ===== Logo ===== */
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  width: 100px;         /* sesuaikan ukuran logo */
+  border-radius: 50%;   /* logo bulat */
+  border: 2px solid #fff; /* opsional: border putih */
+}
