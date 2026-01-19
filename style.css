@@ -169,3 +169,8 @@ button#waBtn:disabled {
   border: none !important;
   box-sizing: border-box !important;
   }
+/* ===== Keterangan / Judul di atas menu ===== */
+.logo-title {
+  text-align: center;
+  margin-bottom: 10px; /* jarak ke menu */
+  }
