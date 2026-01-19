@@ -56,7 +56,7 @@
 
 <script src="script.js"></script>
 
-  <script>
+<script>
 function kirimWA(){
   const usd = document.getElementById("usd").value;
 
@@ -80,7 +80,7 @@ function kirimWA(){
   const netUsd = (usd - fee).toFixed(2);
   const rupiah = Math.round(netUsd * rate);
 
-  const text =
+  const pesan =
 `Halo Admin PayRupiah,
 Saya ingin menukarkan saldo PayPal.
 
@@ -91,15 +91,24 @@ Total Rupiah : Rp ${rupiah.toLocaleString("id-ID")}
 
 Saya sudah transfer Rupiah dan akan mengirim bukti transfer.`;
 
-  const wa = "https://wa.me/628XXXXXXXXXX?text=" + encodeURIComponent(text);
+  // SIMPAN STATUS
+  localStorage.setItem("wa_confirmed", "yes");
 
-  window.open(wa, "_blank");
-
-  // AUTO REDIRECT KE HALAMAN INSTRUKSI
-  setTimeout(() => {
-    window.location.href = "success.html";
-  }, 800);
+  const waUrl = "https://wa.me/6281119566667?text=" + encodeURIComponent(pesan);
+  window.open(waUrl, "_blank");
 }
-      </script>
+</script>
+  
+  <script>
+document.addEventListener("visibilitychange", function () {
+  if (
+    document.visibilityState === "visible" &&
+    localStorage.getItem("wa_confirmed") === "yes"
+  ) {
+    localStorage.removeItem("wa_confirmed");
+    window.location.href = "success.html";
+  }
+
+   </script>
 </body>
   </html>
