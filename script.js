@@ -6,7 +6,7 @@ const noteText = document.getElementById("note");
 const waBtn = document.getElementById("waBtn");
 
 const RATE = 16500;
-const WA_NUMBER = "6281234567890"; // ganti nomor admin
+const WA_NUMBER = "6281119566667"; // ganti nomor admin
 
 usdInput.addEventListener("input", () => {
   const usd = parseFloat(usdInput.value);
