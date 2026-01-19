@@ -22,17 +22,22 @@ body {
   border-radius: 50%;
 }
 
-/* ===== Menu Horizontal ===== */
+/* ===== Menu horizontal ===== */
+.menu {
+  text-align: center;
+  margin-bottom: 10px; /* dikurangi supaya lebih dekat ke logo */
+}
+
 .menu a {
   display: inline-block;
-  padding: 6px 12px;        /* sebelumnya 10px 18px */
+  padding: 6px 12px;   /* ukuran box kecil */
   background: #f1f9ff;
   border: 2px solid #0070ba;
-  border-radius: 6px;        /* sedikit lebih kecil */
+  border-radius: 6px;
   text-decoration: none;
   color: #0070ba;
   font-weight: bold;
-  font-size: 0.9rem;         /* sedikit lebih kecil */
+  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
