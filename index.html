@@ -3,81 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PayRupiah – PayPal ke Rupiah</title>
-
-  <!-- CSS -->
+  <title>PayRupiah</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-  <div class="app-bg">
-    <div class="container">
 
-      <!-- HEADER -->
-      <div class="header">
-        <div class="brand">
-          <img src="logo.png" alt="PayRupiah">
-          <span>PayRupiah</span>
-        </div>
-        <div class="badge-online">Online</div>
-      </div>
+  <div class="container">
 
-      <!-- CARD -->
+    <!-- Logo -->
+    <div class="logo">
+      <img src="logo-payrupiah.png" alt="PayRupiah Logo">
+    </div>
+
+    <!-- Kalkulator -->
+    <div class="card">
+
+      <h1>Penukaran PayPal ke IDR</h1>
+
       <div class="form-grid">
-  <div class="form-group">
-    <label>Nominal (USD)</label>
-    <input type="number" id="usd" placeholder="Contoh: 10" min="0" step="0.01">
-    <small id="warning" class="warning-text" style="display:none;">
-      Minimal penukaran adalah $5
-    </small>
-  </div>
 
-    <div class="form-group">
-      <label>Kurs USD (Tetap)</label>
-      <input type="text" value="1 USD = 16.500 IDR" disabled>
-    </div>
+        <div class="form-group">
+          <label>Nominal USD</label>
+          <input type="number" id="usd" placeholder="Contoh: 10" min="0" step="0.01">
+          <small id="warning" class="warning-text" style="display:none; color:red;">
+            Minimal penukaran adalah $5
+          </small>
+        </div>
 
-    <div class="form-group">
-      <label>Fee (USD)</label>
-      <input type="text" id="fee" disabled>
-    </div>
+        <div class="form-group">
+          <label>Kurs USD</label>
+          <input type="text" value="1 USD = 16.500 IDR" disabled>
+        </div>
 
-    <div class="form-group">
-  <label>Total Rupiah</label>
-  <input type="text" id="idr" disabled>
-  <small id="note" class="note-text">Sudah dipotong fee</small>
-</div>
+        <div class="form-group">
+          <label>Fee (USD)</label>
+          <input type="text" id="fee" disabled>
+        </div>
 
-  </div>
+        <div class="form-group">
+          <label>Total Rupiah</label>
+          <input type="text" id="idr" disabled>
+          <small id="note" class="note-text" style="display:none; color:green;">
+            Sudah dipotong fee
+          </small>
+        </div>
 
-  <div class="checkbox">
-    <input type="checkbox" id="agree">
-    <label for="agree">
-      Saya setuju <a href="term.html">S&K</a>
-    </label>
-  </div>
-
-  <button class="button" id="waBtn" disabled>
-    Lanjut WhatsApp
-  </button>
-
-    
-  </div>
-
-  </div>
-
-
-</div>
-      <!-- MENU -->
-      <div class="menu">
-        <a href="faq.html">FAQ</a>
-        <a href="term.html">S&K</a>
-        <a href="trust.html">Trust</a>
       </div>
-<script src="script.js"></script>
+
+      <div class="checkbox">
+        <input type="checkbox" id="agree">
+        <label for="agree">
+          Saya setuju <a href="term.html">S&K</a>
+        </label>
+      </div>
+
+      <button class="button" id="waBtn" disabled>
+        Lanjut WhatsApp
+      </button>
+
+      <div class="info">
+        Fee dihitung otomatis sesuai nominal transaksi
+      </div>
+
     </div>
+
   </div>
+
+  <script src="script.js"></script>
 </body>
+        </html>
