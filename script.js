@@ -5,7 +5,7 @@ const warningText = document.getElementById("warning");
 const noteText = document.getElementById("note");
 const waBtn = document.getElementById("waBtn");
 
-const RATE = 15100;
+const RATE = 15400;
 const WA_NUMBER = "6281119566667"; // ganti nomor admin
 
 usdInput.addEventListener("input", () => {
